@@ -32,7 +32,7 @@ class WelcomeView extends StatelessWidget {
                           height: 70,
                         ),
                   Text(
-                    "開始聊天吧",
+                    "WelcomeView_1st".tr,
                     style: TextStyle(
                       color: AppColor.prymaryTextColor,
                       fontWeight: FontWeight.bold,
@@ -41,13 +41,13 @@ class WelcomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "你已成功註冊",
+                    "WelcomeView_2nd".tr,
                     style: TextStyle(color: AppColor.secondaryTextColor),
                   ),
                 ],
               ),
               RoundButton(
-                title: "前往體驗",
+                title: "WelcomeView_btn".tr,
                 onPress: () {
                   Get.toNamed(RouteName.homeView);
                 },

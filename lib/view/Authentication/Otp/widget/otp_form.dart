@@ -63,10 +63,10 @@ class OtpForm extends StatelessWidget {
           Obx(() => controller.showResend.value
               ? GestureDetector(
             onTap: controller.resendOtp,
-            child: const Text("重新發送驗證碼",
+            child:  Text("OtpForm_1st".tr,
                 style: TextStyle(color: Colors.blue)),
           )
-              : Text("${controller.secondsRemaining} 秒後可重新發送",
+              : Text("${controller.secondsRemaining} ${"OtpForm_2nd".tr}",
               style: const TextStyle(color: Colors.grey))),
 
 

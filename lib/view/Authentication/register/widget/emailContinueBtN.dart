@@ -26,8 +26,8 @@ class EmailContinueButton extends StatelessWidget {
             children: [
               const Icon(Icons.mail, color: Colors.white),
               const SizedBox(width: 8),
-              const Text(
-                '使用Email繼續',
+               Text(
+                'EmailContinueButton_txt'.tr,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,

@@ -22,20 +22,20 @@ class EmailView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              const Text(
-                "輸入你的電郵地址",
+               Text(
+                "EmailView_1st".tr,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
               ),
               const SizedBox(height: 8),
-              const Text(
-                "我們會發送6位數驗證碼",
+               Text(
+                "EmailView_2nd".tr,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 40),
               EmailInputField(controller: emailCtrl.emailController),
               const Spacer(),
               Obx(() => RoundButton(
-                title: "下一步",
+                title: "EmailView_btn".tr,
                 onPress: emailCtrl.isEmailValid.value
                     ? () {
                  Get.toNamed(RouteName.otpView);

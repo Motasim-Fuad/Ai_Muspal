@@ -113,7 +113,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
         
               EmailContinueButton(),
-              Text("btm".tr,style: TextStyle(fontSize: 10),),
+              Text("registerView_btm".tr,style: TextStyle(fontSize: 10),),
             ],
           ),
         ),

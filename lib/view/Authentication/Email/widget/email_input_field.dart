@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EmailInputField extends StatelessWidget {
   final TextEditingController controller;
@@ -9,13 +10,13 @@ class EmailInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      style: const TextStyle(
+      style:  TextStyle(
         fontSize: 16,
         color: Colors.black,
       ),
       decoration: InputDecoration(
-        labelText: '電郵地址',
-        hintText: 'johndoe@gmail.com',
+        labelText: 'EmailInputField_labelText'.tr,
+        hintText: 'EmailInputField_hintText'.tr,
         hintStyle: const TextStyle(color: Colors.grey),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
