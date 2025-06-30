@@ -27,6 +27,12 @@ class ImageAssets{
 
 
 
+  static const String usFlag="asstes/icons/us.svg";
+  static const String chinaFlag="asstes/icons/chinaFlag.svg";
+  static const String chinaFlagPng="asstes/icons/chines.png";
+
+
+
 
 
 

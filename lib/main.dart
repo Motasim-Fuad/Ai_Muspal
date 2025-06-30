@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'AI Muspal',
 
       translations: Languages(),
-      locale: Locale("en","US"),
-      fallbackLocale: Locale("en","US"),
+      locale: Locale("zh","CN"),
+      fallbackLocale: Locale("zh","CN"),
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

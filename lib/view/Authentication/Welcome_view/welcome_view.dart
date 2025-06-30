@@ -24,11 +24,13 @@ class WelcomeView extends StatelessWidget {
               const SizedBox(), // Pushes content down
               Column(
                 children: [
-                  SvgPicture.asset(
-                    ImageAssets.welcome,
-                    height: 70,
-                  ),
                   const SizedBox(height: 20),
+
+
+                         SvgPicture.asset(
+                          ImageAssets.welcome,
+                          height: 70,
+                        ),
                   Text(
                     "開始聊天吧",
                     style: TextStyle(
