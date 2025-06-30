@@ -67,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "您的",
+                        "HomeView_1st".tr,
                         style: TextStyle(
                           color: AppColor.prymaryTextColor,
                           fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                       Text(
-                        "音樂大師",
+                        "HomeView_2nd".tr,
                         style: TextStyle(
                           color: AppColor.primaryButtonColor,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
 
                   const SizedBox(height: 10),
                   Text(
-                    "學習一切樂理知識",
+                    "HomeView_3rd".tr,
                     style: TextStyle(color: AppColor.secondaryTextColor),
                   ),
 
@@ -100,7 +100,7 @@ class _HomeViewState extends State<HomeView> {
               ),
 
               RoundButton(
-                title: "開始對話",
+                title: "HomeView_4th".tr,
                 onPress: () {
                   showAi_BottomSheet();
                 },
@@ -136,8 +136,8 @@ class _HomeViewState extends State<HomeView> {
                         height: 20,
                       ),
           
-                      const Text(
-                        "AI功能",
+                       Text(
+                        "HomeView_5th".tr,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,

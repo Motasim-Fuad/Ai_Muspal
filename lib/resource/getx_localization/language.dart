@@ -20,6 +20,11 @@ class Languages extends Translations{
       "WelcomeView_1st":"Let's start chatting",
       "WelcomeView_2nd":"You have successfully registered",
       "WelcomeView_btn":"Go to experience",
+      "HomeView_1st":"Your",
+      "HomeView_2nd":"Music Master",
+      "HomeView_3rd":"Learn all about music theory",
+      "HomeView_4th":"Start a conversation",
+      "HomeView_5th":"AI function",
     },
 
     'zh_CN' :{
@@ -37,6 +42,11 @@ class Languages extends Translations{
       "WelcomeView_1st":'開始聊天吧',
       "WelcomeView_2nd":'你已成功註冊',
       "WelcomeView_btn":'前往體驗',
+      "HomeView_1st":'您的',
+      "HomeView_2nd":'音樂大師',
+      "HomeView_3rd":'學習一切樂理知識',
+      "HomeView_4th":'開始對話',
+      "HomeView_5th":'AI功能',
 
     },
 
