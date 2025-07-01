@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TermsOfServiceView extends StatefulWidget {
   const TermsOfServiceView({super.key});
@@ -11,18 +12,18 @@ class _TermsOfServiceViewState extends State<TermsOfServiceView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("服務條款",style: TextStyle(fontWeight: FontWeight.bold),),),
+      appBar: AppBar(centerTitle: true, title: Text("TermsOfServiceView_1st".tr,style: TextStyle(fontWeight: FontWeight.bold),),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               SizedBox(height: 30,),
-              Text("假亭幼才朱字往燈只告裝南，喜澡米開兌象虎前寸福。買個鼻過亮「進冬音跟昔種飽重言家」丁哥百送平化干今色彩收、貫冒植今喝事兩化紅十立過因課飽乞買幫「弟抄主晚目貝那」。"),
+              Text("TermsOfServiceView_2nd".tr),
               SizedBox(height: 30,),
-              Text("口昔教或十你會光早洋愛左現爸進口吹肖反太！昔鼻空南欠遠巴氣眼日。父自朵常。它聲下吃對怎年即音因蝴不誰，一兆外日叫買衣見？外把以相毛林。"),
+              Text("TermsOfServiceView_3rd".tr),
               SizedBox(height: 30,),
-              Text("杯好告快高波買她甲。夕風話只愛姐綠老。呢助邊吹，進扒吹老。世因候。更祖哪明條北書荷太院遠飯後喝幫怕尼氣門很，話用白瓜根秋夏。子金胡由游少送彩七且你平語新語美呢。"),
+              Text("TermsOfServiceView_4th".tr),
               SizedBox(height: 30,),
               Text("勿兩菜「春青火開」從下停回古更開帽問夕乍福己黃。裏七壯歌旁十，亭路五蝴千河貝，松申開。牛壯秋貓它天上雨訴多蝴食裝石。"),
               SizedBox(height: 30,),

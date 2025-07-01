@@ -22,7 +22,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text("帳戶")),
+      appBar: AppBar(centerTitle: true, title:  Text("ProfileView_title".tr)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -45,7 +45,7 @@ class _ProfileViewState extends State<ProfileView> {
             const SizedBox(height: 30),
 
             // Subscription section
-            const Text("訂閱", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+             Text("ProfileView_Subscribe".tr, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             const SizedBox(height: 10),
             SvgPicture.asset(ImageAssets.profile_animation1, ),
 
@@ -69,32 +69,32 @@ class _ProfileViewState extends State<ProfileView> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("一般會員",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+                  Text("ProfileView_1st".tr,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
                   SizedBox(height: 20,),
-                  Text("你現在正在使用免費會員計劃，升級以獲得更多代幣, 每日可以發送更多訊息"),
+                  Text("ProfileView_2nd".tr),
 
                   const Divider(),
 
-                  Text("計劃包括"),
+                  Text("ProfileView_3rd".tr),
                   Row(
                     children: [
                       Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
                       SizedBox(width: 10,),
-                      Text("每日 5 條訊息"),
+                      Text("ProfileView_4th".tr),
                     ],
                   ),
                   Row(
                     children: [
                       Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
                       SizedBox(width: 10,),
-                      Text("每條訊息最多 500 字"),
+                      Text("ProfileView_5th".tr),
                     ],
                   ),
                   Row(
                     children: [
                       Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
                       SizedBox(width: 10,),
-                      Text("每月最多15分鐘的AI音頻評分"),
+                      Text("ProfileView_6th".tr),
                     ],
                   ),
 
@@ -102,12 +102,12 @@ class _ProfileViewState extends State<ProfileView> {
                     children: [
                       Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
                       SizedBox(width: 10,),
-                      Text("每月5份音樂分析報告"),
+                      Text("ProfileView_7th".tr),
                     ],
                   ),
                   SizedBox(height: 20,),
 
-                  RoundButton(title: "升級會員", onPress: (){
+                  RoundButton(title: "ProfileView_8th".tr, onPress: (){
                     Get.toNamed(RouteName.upgratemembershiftView);
                   },width: double.infinity,),
 
@@ -135,28 +135,28 @@ class _ProfileViewState extends State<ProfileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                   title: Text("關於我們"),
+                   title: Text("ProfileView_9th".tr),
                     onTap: () {
                      Get.toNamed(RouteName.aboutView);
                     },
                   ),
                    const Divider(),
                   ListTile(
-                    title: Text("聯絡我們"),
+                    title: Text("ProfileView_10th".tr),
                     onTap: (){
                       Get.toNamed(RouteName.contactView);
                     },
                   ),
                   const Divider(),
                   ListTile(
-                    title: Text("服務條款"),
+                    title: Text("ProfileView_11th".tr),
                     onTap: (){
                         Get.toNamed(RouteName.termsofServices);
                     },
                   ),
                   const Divider(),
                   ListTile(
-                    title: Text("隱私"),
+                    title: Text("ProfileView_12th".tr),
                     onTap: (){
                       Get.toNamed(RouteName.privacyView);
                     },
@@ -185,7 +185,7 @@ class _ProfileViewState extends State<ProfileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    title: Text("登出"),
+                    title: Text("ProfileView_13th".tr),
                     onTap: (){
                       //Get.toNamed(RouteName.singoutView);
                       //showLogoutBottomSheet(context);
@@ -216,7 +216,7 @@ class _ProfileViewState extends State<ProfileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    title: Text("刪除帳戶"),
+                    title: Text("ProfileView_14th".tr),
                     onTap: (){
                      //Get.toNamed(RouteName.deleteAccountView);
 
@@ -236,9 +236,7 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-
   //sing out bottom sheet
-
   void showiOSLogoutBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -257,10 +255,10 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               child: Column(
                 children: [
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
-                      '你確定你要登出嗎？',
+                      'ProfileView_15th'.tr,
                       style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ),
@@ -275,8 +273,8 @@ class _ProfileViewState extends State<ProfileView> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: const Text(
-                        '登出',
+                      child:  Text(
+                        'ProfileView_16th'.tr,
                         style: TextStyle(color: Colors.red, fontSize: 18),
                       ),
                     ),
@@ -298,8 +296,8 @@ class _ProfileViewState extends State<ProfileView> {
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: const Text(
-                    '取消',
+                  child:  Text(
+                    'ProfileView_17th'.tr,
                     style: TextStyle(color: Colors.blue, fontSize: 18),
                   ),
                 ),
@@ -311,15 +309,9 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-
-
-
-
 }
 
 //delete account bottom sheet
-
-
 class DeleteAccountBottomSheet extends StatelessWidget {
   final DeleteAccountController controller = Get.find();
 
@@ -336,13 +328,13 @@ class DeleteAccountBottomSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            '您確定要永久刪除您的帳戶嗎？',
+           Text(
+            'ProfileView_18th'.tr,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          const Text(
-            '與您帳戶關聯的所有資料都將被刪除且無法恢復。',
+           Text(
+            'ProfileView_19th'.tr,
             style: TextStyle(color: Colors.grey),
             textAlign: TextAlign.center,
           ),
@@ -355,7 +347,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
               onTap: isEnabled ? () {
                 controller.deleteAccount();
                 Get.back();
-                Utils.snackBar("account delete", "Account delete successfully");
+                Utils.snackBar("ProfileView_20th".tr, "ProfileView_21th".tr);
               } : null,
               child: Container(
                 width: double.infinity,
@@ -367,8 +359,8 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   isEnabled
-                      ? '刪除帳戶'
-                      : '刪除帳戶 (${controller.selectedCount})',
+                      ? 'ProfileView_22th'.tr
+                      : '${"ProfileView_23th".tr} (${controller.selectedCount})',
                   style: TextStyle(
                     color: isEnabled ? Colors.white : Colors.grey,
                     fontWeight: FontWeight.bold,
@@ -391,8 +383,8 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               alignment: Alignment.center,
-              child: const Text(
-                '取消',
+              child:  Text(
+                'ProfileView_24th'.tr,
                 style: TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.bold,
