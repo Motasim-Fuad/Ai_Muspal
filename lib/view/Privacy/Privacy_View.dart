@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PrivacyView extends StatefulWidget {
   const PrivacyView({super.key});
@@ -11,7 +12,7 @@ class _PrivacyViewState extends State<PrivacyView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("隱私",style: TextStyle(fontWeight: FontWeight.bold),),centerTitle: true,),
+      appBar: AppBar(title: Text("PrivacyView_title".tr,style: TextStyle(fontWeight: FontWeight.bold),),centerTitle: true,),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

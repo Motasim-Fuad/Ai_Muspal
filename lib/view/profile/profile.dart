@@ -84,10 +84,12 @@ class _ProfileViewState extends State<ProfileView> {
                     ],
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
                       SizedBox(width: 10,),
-                      Text("ProfileView_5th".tr),
+                      Text("ProfileView_5th".tr,overflow: TextOverflow.ellipsis,),
+
                     ],
                   ),
                   Row(

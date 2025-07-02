@@ -53,7 +53,7 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
                   Row(
                     children: [
                       Text(
-                        '年費計劃',
+                        'ValuedMemberView_c1_1st'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -64,9 +64,9 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    children: const [
+                    children:  [
                       Text(
-                        'HK\$238.5/月',
+                        'ValuedMemberView_c1_2nd'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -75,7 +75,7 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        '(HK\$2,862/年)',
+                        'ValuedMemberView_c1_3rd'.tr,
                         style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
@@ -103,10 +103,10 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildPlanFeature("每月100條訊息"),
-                  _buildPlanFeature("每條訊息最多 1,000 字"),
-                  _buildPlanFeature("每月最多4小時的AI音頻評分"),
-                  _buildPlanFeature("每月300份音樂分析報告"),
+                  _buildPlanFeature("ValuedMemberView_c2_1st".tr),
+                  _buildPlanFeature("ValuedMemberView_c2_2nd".tr),
+                  _buildPlanFeature("ValuedMemberView_c2_3rd".tr),
+                  _buildPlanFeature("ValuedMemberView_c2_4th".tr),
                 ],
               ),
             ),
@@ -116,21 +116,21 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
             // [Auto Renew Info]
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text("自動續費說明", style: TextStyle(fontWeight: FontWeight.bold)),
+              children:  [
+                Text("ValuedMemberView_c3_title".tr, style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 6),
                 Text(
-                  "1. 付款：“連續包月/季/年”商品為自動續費商品，確認購買後，會從您的蘋果iTunes帳戶扣費；",
+                  "ValuedMemberView_c3_1st".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "2. 續費：在您訂閱到期前24小時，蘋果會自動從iTunes帳戶扣費，成功後會員有效期自動延長；",
+                  "ValuedMemberView_c3_2nd".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "3. 如需取消自動續費，請在訂閱到期前至少24小時，手動在Apple ID帳戶設置中關閉自動續費，關閉後不再扣費。",
+                  "ValuedMemberView_c3_3rd".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
@@ -157,8 +157,8 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
                                 color: Colors.blueGrey,
                                 borderRadius: BorderRadius.circular(5),
                               ),
-                              child: const Text(
-                                "套用",
+                              child:  Text(
+                                "ValuedMemberView_textField_btn".tr,
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -173,12 +173,12 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
                               color: Colors.grey.shade400,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: const Text(
-                              "套用",
+                            child:  Text(
+                              "ValuedMemberView_textField_btn".tr,
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                  hintText: "輸入推薦碼",
+                  hintText: "ValuedMemberView_textField_hint".tr,
                   border: const OutlineInputBorder(),
                 ),
               ),
@@ -204,14 +204,14 @@ class _ValuedMemberViewState extends State<ValuedMemberView> {
 
             const SizedBox(height: 20),
             RoundButton(
-              title: "開始 3 天免費試用",
+              title: "ValuedMemberView_roundbtn".tr,
               onPress: () {
                 Get.toNamed(RouteName.paymentView);
               },
               width: double.infinity,
             ),
             const SizedBox(height: 20),
-            const Text("訂閱後，你將被自動扣除HK\$ 6528/年，你可以透過App store取消式管理訂閱。使用條款 。"),
+             Text("ValuedMemberView_bottom".tr),
           ],
         ),
       ),

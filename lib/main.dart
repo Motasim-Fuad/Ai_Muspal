@@ -20,8 +20,11 @@ class MyApp extends StatelessWidget {
       title: 'AI Muspal',
 
       translations: Languages(),
-      locale: Locale("zh","CN"),
-      fallbackLocale: Locale("zh","CN"),
+      // locale: Locale("zh","CN"),
+      // fallbackLocale: Locale("zh","CN"),
+
+      locale: Locale("en","US"),
+      fallbackLocale: Locale("en","US"),
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

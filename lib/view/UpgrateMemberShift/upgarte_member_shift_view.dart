@@ -35,7 +35,7 @@ class _UpgarteMemberShiftViewState extends State<UpgarteMemberShiftView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("升級AI MusPal"),
+        title: Text("UpgarteMemberShiftView_title".tr),
       ),
       body: Padding(
         padding: const EdgeInsets.only( left: 20, right: 20),
@@ -61,7 +61,7 @@ class _UpgarteMemberShiftViewState extends State<UpgarteMemberShiftView> {
                       ),
                     ),
                     child: Text(
-                      "尊貴會員",
+                      "UpgarteMemberShiftView_1st".tr,
                       style: TextStyle(
                         color: selectedScreenIndex.value == 0
                             ? activeColor
@@ -87,7 +87,7 @@ class _UpgarteMemberShiftViewState extends State<UpgarteMemberShiftView> {
                       ),
                     ),
                     child: Text(
-                      "白金會員",
+                      "UpgarteMemberShiftView_2nd".tr,
                       style: TextStyle(
                         color: selectedScreenIndex.value == 1
                             ? activeColor
@@ -105,12 +105,8 @@ class _UpgarteMemberShiftViewState extends State<UpgarteMemberShiftView> {
                 controller: _pageController,
                 onPageChanged: _onPageChanged,
                 children: [
-
                    ValuedMemberView(),
                   PlatinumMemberView(),
-
-                  // StSaveTutorinfo(),
-                  // StHiredTutorinfo(),
                 ],
               ),
             ),
