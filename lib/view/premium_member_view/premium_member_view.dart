@@ -1,3 +1,4 @@
+// PremiumMemberView.dart - Localized version
 import 'package:ai_muspal/resource/App_routes/routes_name.dart';
 import 'package:ai_muspal/resource/Colors/app_colors.dart';
 import 'package:ai_muspal/resource/compunents/RoundButton.dart';
@@ -22,242 +23,124 @@ class _PremiumMemberViewState extends State<PremiumMemberView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text("帳戶")),
+      appBar: AppBar(centerTitle: true, title: Text('PremiumMemberView_title'.tr)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile header
             Row(
               children: [
                 SvgPicture.asset(ImageAssets.logo, width: 40, height: 40),
                 const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("John Doe", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    Text("johndoe@gmail.com", style: TextStyle(color: Colors.grey)),
+                  children: [
+                    Text("John Doe", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    Text("johndoe@gmail.com", style: const TextStyle(color: Colors.grey)),
                   ],
                 ),
               ],
             ),
             const SizedBox(height: 30),
-
-            // Subscription section
-            const Text("訂閱", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+            Text('PremiumMemberView_subscribeTitle'.tr, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             const SizedBox(height: 10),
             SvgPicture.asset(ImageAssets.platinumMember_animation2,),
-
             const SizedBox(height: 30),
-
-            // Account Options Container
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
+                  BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
                 ],
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("白金會員",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-                  SizedBox(height: 20,),
-                  Text("你現在正在使用付費會員計劃，升級以獲得更多代幣，每日可以發送更多訊息"),
-
+                  Text('PremiumMemberView_planName'.tr, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                  const SizedBox(height: 20),
+                  Text('PremiumMemberView_planDesc'.tr),
                   const Divider(),
-
-                  Text("計劃包括"),
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
-                      SizedBox(width: 10,),
-                      Text("每月無限條訊息"),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
-                      SizedBox(width: 10,),
-                      Text("每條訊息最多 2,000 字"),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
-                      SizedBox(width: 10,),
-                      Text("每月最多10小時的AI音頻評分"),
-                    ],
-                  ),
-
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle,color: Colors.lightGreenAccent,weight: 1,),
-                      SizedBox(width: 10,),
-                      Text("每月3,000份音樂分析報告"),
-                    ],
-                  ),
-
-
-
-                  SizedBox(height: 20,),
-
+                  Text('PremiumMemberView_planIncludes'.tr),
+                  Row(children: [Icon(Icons.check_circle, color: Colors.lightGreenAccent), const SizedBox(width: 10), Text('PremiumMemberView_feature1'.tr)]),
+                  Row(children: [Icon(Icons.check_circle, color: Colors.lightGreenAccent), const SizedBox(width: 10), Text('PremiumMemberView_feature2'.tr)]),
+                  Row(children: [Icon(Icons.check_circle, color: Colors.lightGreenAccent), const SizedBox(width: 10), Text('PremiumMemberView_feature3'.tr)]),
+                  Row(children: [Icon(Icons.check_circle, color: Colors.lightGreenAccent), const SizedBox(width: 10), Text('PremiumMemberView_feature4'.tr)]),
+                  const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () async {
                       bool result = await subscriptionController.handleManageSubscription();
-                     // await subscriptionController.handleManageSubscription();
                       if (result) {
                         Get.toNamed(RouteName.music_chatView);
                       } else {
                         Get.toNamed(RouteName.manageSubscriptionView);
                       }
                     },
-                    child: Text(
-                      subscriptionController.isSubscribed.value ? "管理訂閱" : "升級成為高級會員",
-                      style: TextStyle(
+                    child: Obx(() => Text(
+                      subscriptionController.isSubscribed.value
+                          ? 'PremiumMemberView_manage'.tr
+                          : 'PremiumMemberView_upgrade'.tr,
+                      style: const TextStyle(
                         color: Colors.red,
                         decoration: TextDecoration.underline,
-                        decorationColor: Colors.red,
                         fontWeight: FontWeight.bold,
+                        decorationColor: Colors.red,
                         decorationThickness: 3,
                       ),
-                    ),
-                  )
-
-
-
+                    )),
+                  ),
                 ],
               ),
             ),
-
-            SizedBox(height: 20,),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile(
-                    title: Text("關於我們"),
-                    onTap: () {
-                      Get.toNamed(RouteName.aboutView);
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    title: Text("聯絡我們"),
-                    onTap: (){
-                      Get.toNamed(RouteName.contactView);
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    title: Text("服務條款"),
-                    onTap: (){
-                      Get.toNamed(RouteName.termsofServices);
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    title: Text("隱私"),
-                    onTap: (){
-                      Get.toNamed(RouteName.privacyView);
-                    },
-                  ),
-
-                ],
-              ),
-            ),
-            SizedBox(height: 20,),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile(
-                    title: Text("登出"),
-                    onTap: (){
-
-                      showiOSLogoutBottomSheet(context);
-                    },
-                  ),
-
-                ],
-              ),
-            ),
-            SizedBox(height: 20,),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile(
-                    title: Text("刪除帳戶"),
-                    onTap: (){
-
-
-                      Get.put(DeleteAccountController()); // Register the controller
-                      Get.bottomSheet(DeleteAccountBottomSheet());
-                    },
-                  ),
-
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
+            _buildListTileSection([
+              {'title': 'PremiumMemberView_about'.tr, 'route': RouteName.aboutView},
+              {'title': 'PremiumMemberView_contact'.tr, 'route': RouteName.contactView},
+              {'title': 'PremiumMemberView_terms'.tr, 'route': RouteName.termsofServices},
+              {'title': 'PremiumMemberView_privacy'.tr, 'route': RouteName.privacyView},
+            ]),
+            const SizedBox(height: 20),
+            _buildActionTile('PremiumMemberView_logout'.tr, () => showiOSLogoutBottomSheet(context)),
+            const SizedBox(height: 20),
+            _buildActionTile('PremiumMemberView_delete'.tr, () => Get.bottomSheet(DeleteAccountBottomSheet())),
           ],
         ),
       ),
     );
   }
 
+  Widget _buildListTileSection(List<Map<String, dynamic>> items) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4))],
+      ),
+      child: Column(
+        children: items.map((item) => Column(
+          children: [
+            ListTile(title: Text(item['title']), onTap: () => Get.toNamed(item['route'])),
+            const Divider(),
+          ],
+        )).toList(),
+      ),
+    );
+  }
 
-  //sing out bottom sheet
+  Widget _buildActionTile(String title, VoidCallback onTap) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4))],
+      ),
+      child: ListTile(title: Text(title), onTap: onTap),
+    );
+  }
 
   void showiOSLogoutBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -269,59 +152,38 @@ class _PremiumMemberViewState extends State<PremiumMemberView> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // First Box: Logout Confirmation
             Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                    child: Text(
-                      '你確定你要登出嗎？',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text('PremiumMemberView_logoutConfirm'.tr, style: const TextStyle(fontSize: 14, color: Colors.grey)),
                   ),
                   const Divider(height: 1),
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
-                      // TODO: perform logout logic here
-
                       Get.toNamed(RouteName.registerView);
                     },
                     child: Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: const Text(
-                        '登出',
-                        style: TextStyle(color: Colors.red, fontSize: 18),
-                      ),
+                      child: Text('PremiumMemberView_logout'.tr, style: const TextStyle(color: Colors.red, fontSize: 18)),
                     ),
                   ),
                 ],
               ),
             ),
-
             const SizedBox(height: 8),
-
-            // Second Box: Cancel Button
             Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: InkWell(
                 onTap: () => Navigator.pop(context),
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: const Text(
-                    '取消',
-                    style: TextStyle(color: Colors.blue, fontSize: 18),
-                  ),
+                  child: Text('PremiumMemberView_cancel'.tr, style: const TextStyle(color: Colors.blue, fontSize: 18)),
                 ),
               ),
             ),
@@ -330,45 +192,25 @@ class _PremiumMemberViewState extends State<PremiumMemberView> {
       ),
     );
   }
-
-
-
-
-
 }
-
-//delete account bottom sheet
-
 
 class DeleteAccountBottomSheet extends StatelessWidget {
   final DeleteAccountController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    controller.startCountdown(); // Start countdown when bottom sheet is built
+    controller.startCountdown();
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
+      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            '您確定要永久刪除您的帳戶嗎？',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+          Text('PremiumMemberView_deleteConfirm'.tr, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          const Text(
-            '與您帳戶關聯的所有資料都將被刪除且無法恢復。',
-            style: TextStyle(color: Colors.grey),
-            textAlign: TextAlign.center,
-          ),
+          Text('PremiumMemberView_deleteDesc'.tr, style: const TextStyle(color: Colors.grey), textAlign: TextAlign.center),
           const SizedBox(height: 24),
-
-          // DELETE button
           Obx(() {
             bool isEnabled = controller.isDeleteEnabled.value;
             return GestureDetector(
@@ -386,21 +228,13 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  isEnabled
-                      ? '刪除帳戶'
-                      : '刪除帳戶 (${controller.selectedCount})',
-                  style: TextStyle(
-                    color: isEnabled ? Colors.white : Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  isEnabled ? 'PremiumMemberView_delete'.tr : '${'PremiumMemberView_delete'.tr} (${controller.selectedCount})',
+                  style: TextStyle(color: isEnabled ? Colors.white : Colors.grey, fontWeight: FontWeight.bold),
                 ),
               ),
             );
           }),
-
           const SizedBox(height: 12),
-
-          // CANCEL button
           GestureDetector(
             onTap: () => Get.back(),
             child: Container(
@@ -411,13 +245,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               alignment: Alignment.center,
-              child: const Text(
-                '取消',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text('PremiumMemberView_cancel'.tr, style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
             ),
           ),
         ],
@@ -426,7 +254,6 @@ class DeleteAccountBottomSheet extends StatelessWidget {
   }
 }
 
-
 class SubscriptionController extends GetxController {
   RxBool isSubscribed = false.obs;
 
@@ -434,30 +261,3 @@ class SubscriptionController extends GetxController {
     return true;
   }
 }
-
-
-
-// In your controller
-// class SubscriptionController extends GetxController {
-//   RxBool isSubscribed = false.obs;
-//
-//   Future<void> handleManageSubscription() async {
-//     if (isSubscribed.value) {
-//       // Example: Open subscription management screen
-//       // await Get.to(() => SubscriptionManagementView());
-//       print('Navigating to subscription management...');
-//       Get.back(result: false); // User already subscribed
-//     } else {
-//       // Perform upgrade logic
-//       await upgradeToPremium();
-//       Get.back(result: true); // User upgraded now
-//     }
-//   }
-//
-//   Future<void> upgradeToPremium() async {
-//     // Simulate upgrade process
-//     await Future.delayed(Duration(seconds: 1));
-//     isSubscribed.value = true;
-//     print('User upgraded to premium');
-//   }
-// }

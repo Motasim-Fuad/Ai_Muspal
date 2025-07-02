@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ai_muspal/resource/asseets/image_assets.dart';
 import 'package:get/get.dart';
-
 import '../../../View_Model/Controller/upgreteMemberShift/referrer_controller.dart';
 
 class PlatinumMemberView extends StatelessWidget {
@@ -39,6 +38,7 @@ class PlatinumMemberView extends StatelessWidget {
               height: 200,
             ),
             const SizedBox(height: 10),
+
             // [Membership Info]
             Container(
               padding: const EdgeInsets.all(12),
@@ -53,7 +53,7 @@ class PlatinumMemberView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '年費計劃',
+                        'PlatinumMemberView_c1_1st'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -91,8 +91,8 @@ class PlatinumMemberView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    '除開只需\$27/1小時',
+                  Text(
+                    'PlatinumMemberView_c1_2nd'.tr,
                     style: TextStyle(fontSize: 12, color: Colors.black54),
                   ),
                 ],
@@ -118,10 +118,10 @@ class PlatinumMemberView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildPlanFeature("每月無條件訊息"),
-                  _buildPlanFeature("每條訊息最多 2,000 字"),
-                  _buildPlanFeature("每月最多 10 小時的 AI 音樂評分"),
-                  _buildPlanFeature("每月 3,000 份音樂分析報告"),
+                  _buildPlanFeature("PlatinumMemberView_c2_1st".tr),
+                  _buildPlanFeature("PlatinumMemberView_c2_2nd".tr),
+                  _buildPlanFeature("PlatinumMemberView_c2_3rd".tr),
+                  _buildPlanFeature("PlatinumMemberView_c2_4th".tr),
                 ],
               ),
             ),
@@ -131,73 +131,79 @@ class PlatinumMemberView extends StatelessWidget {
             // [Auto Renew Info]
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text("自動續費說明", style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(height: 6),
+              children: [
                 Text(
-                  "1. 付款：“連續包月/季/年”商品為自動續費商品，確認購買後，會從您的蘋果iTunes帳戶扣費；",
+                  "PlatinumMemberView_c3_title".tr,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  "PlatinumMemberView_c3_1st".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  "2. 續費：在您訂閱到期前24小時，蘋果會自動從iTunes帳戶扣費，成功後會員有效期自動延長；",
+                  "PlatinumMemberView_c3_2nd".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  "3. 如需取消自動續費，請在訂閱到期前至少24小時，手動在Apple ID帳戶設置中關閉自動續費，關閉後不再扣費。",
+                  "PlatinumMemberView_c3_3rd".tr,
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
             ),
 
             const SizedBox(height: 20),
+
+            // [Referral Code Input]
             Obx(
-              () => TextField(
+                  () => TextField(
                 onChanged: controller.onReferralCodeChanged,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  suffixIcon:
-                      controller.isButtonEnabled.value
-                          ? GestureDetector(
-                            onTap: controller.applyReferral,
-                            child: Container(
-                              margin: const EdgeInsets.all(6),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.blueGrey,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                "套用",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          )
-                          : Container(
-                            margin: const EdgeInsets.all(6),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade400,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text(
-                              "套用",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                  hintText: "輸入推薦碼",
+                  suffixIcon: controller.isButtonEnabled.value
+                      ? GestureDetector(
+                    onTap: controller.applyReferral,
+                    child: Container(
+                      margin: const EdgeInsets.all(6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.blueGrey,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        "PlatinumMemberView_textField_btn".tr,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  )
+                      : Container(
+                    margin: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      "PlatinumMemberView_textField_btn".tr,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  hintText: "PlatinumMemberView_textField_hint".tr,
                   border: const OutlineInputBorder(),
                 ),
               ),
             ),
+
+            // [Referral Status Message]
             Obx(() {
               if (controller.referralStatusMessage.value.isEmpty)
                 return SizedBox();
@@ -207,10 +213,9 @@ class PlatinumMemberView extends StatelessWidget {
                 child: Text(
                   controller.referralStatusMessage.value,
                   style: TextStyle(
-                    color:
-                        controller.isReferralApplied.value
-                            ? Colors.green
-                            : Colors.red,
+                    color: controller.isReferralApplied.value
+                        ? Colors.green
+                        : Colors.red,
                     fontSize: 14,
                   ),
                 ),
@@ -218,15 +223,23 @@ class PlatinumMemberView extends StatelessWidget {
             }),
 
             const SizedBox(height: 20),
+
+            // [Start Trial Button]
             RoundButton(
-              title: "開始 3 天免費試用",
+              title: "PlatinumMemberView_roundbtn".tr,
               onPress: () {
                 Get.toNamed(RouteName.paymentView);
               },
               width: double.infinity,
             ),
+
             const SizedBox(height: 20),
-            const Text("訂閱後，你將被自動扣除HK\$ 6528/年，你可以透過App store取消式管理訂閱。使用條款 。"),
+
+            // [Bottom Info]
+            Text(
+              "PlatinumMemberView_bottom".tr,
+              style: TextStyle(fontSize: 12, color: Colors.black87),
+            ),
           ],
         ),
       ),

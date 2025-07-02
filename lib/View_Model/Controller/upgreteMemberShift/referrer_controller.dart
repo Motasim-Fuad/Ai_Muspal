@@ -21,16 +21,16 @@ class ReferralController extends GetxController {
 
   void applyReferral() {
     if (isReferralApplied.value) {
-      referralStatusMessage.value = "推薦碼已經套用";
+      referralStatusMessage.value = "ReferralController_1st".tr;
       return;
     }
 
     if (referralCode.value == validReferralCode) {
       isReferralApplied.value = true;
-      referralStatusMessage.value = "推薦碼已成功套用！";
+      referralStatusMessage.value = "ReferralController_2nd".tr;
     } else {
       isReferralApplied.value = false;
-      referralStatusMessage.value = "推薦碼無效";
+      referralStatusMessage.value = "ReferralController_3rd".tr;
     }
   }
 }

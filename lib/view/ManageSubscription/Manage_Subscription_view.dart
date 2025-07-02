@@ -15,7 +15,7 @@ class ManageSubscriptionView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("管理訂閱"),
+        title: Text("ManageSubscriptionView_title".tr),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -42,19 +42,19 @@ class ManageSubscriptionView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("你的訂閱", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("ManageSubscriptionView_1st".tr, style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8),
-                    const Text("白金會員", style: TextStyle(fontSize: 16)),
+                    Text("ManageSubscriptionView_2nd".tr, style: const TextStyle(fontSize: 16)),
 
                     const SizedBox(height: 20),
-                    const Text("付費計劃", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("ManageSubscriptionView_3rd".tr, style: const TextStyle(fontWeight: FontWeight.bold)),
 
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("年費"),
-                        Text("HK\$2,862"),
+                      children: [
+                        Text("ManageSubscriptionView_4th".tr),
+                        Text("ManageSubscriptionView_5th".tr),
                       ],
                     ),
 
@@ -62,49 +62,47 @@ class ManageSubscriptionView extends StatelessWidget {
                     const Divider(color: Colors.grey, height: 1),
                     const SizedBox(height: 20),
 
-                    const Text(
-                      "從 8 月 24 日開始，您的計劃將以每月 480 港元的正常價格續訂，直至取消。",
-                      style: TextStyle(color: Colors.black87),
+                    Text(
+                      "ManageSubscriptionView_6th".tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ],
                 ),
               ),
 
-              const Spacer(), // Push button to the bottom
+              const Spacer(),
 
               RoundButton(
                 textColor: Colors.black,
-                title: "取消訂閱",
+                title: "ManageSubscriptionView_btn".tr,
                 onPress: () {
-
-                showDialog(context: (context), builder: (context){
-                  return CupertinoAlertDialog(
-                    title:const  Text("確認取消"),
-                    content: const Text("如果您現在確認並結束訂閱，您仍然可以在 2024 年 9 月 24 日之前使用服務"),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: Text("現在不要",style: TextStyle(color: AppColor.primaryButtonColor),),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-
-                      CupertinoDialogAction(
-                          isDefaultAction: true,
-                        child: Text("確認",style: TextStyle(color: AppColor.primaryButtonColor),),
-                        onPressed: () {
-
-                          Navigator.of(context).pop();
-                          Get.toNamed(RouteName.profileView);
-                        },
-                      ),
-                    ],
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: Text("ManageSubscriptionView_alertTitle".tr),
+                        content: Text("ManageSubscriptionView_alertContent".tr),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: Text("ManageSubscriptionView_alertCancel".tr,
+                                style: const TextStyle(color: AppColor.primaryButtonColor)),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            child: Text("ManageSubscriptionView_alertConfirm".tr,
+                                style: const TextStyle(color: AppColor.primaryButtonColor)),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              Get.toNamed(RouteName.profileView);
+                            },
+                          ),
+                        ],
+                      );
+                    },
                   );
-                });
                 },
               ),
-
-
               SizedBox(height: media.size.height * 0.02),
             ],
           ),
@@ -112,6 +110,4 @@ class ManageSubscriptionView extends StatelessWidget {
       ),
     );
   }
-
-
 }
