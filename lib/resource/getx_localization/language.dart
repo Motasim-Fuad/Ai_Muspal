@@ -138,8 +138,29 @@ class Languages extends Translations{
         "PremiumMemberView_cancel": "Cancel",
         "PremiumMemberView_delete": "Delete Account",
         "PremiumMemberView_deleteConfirm": "Are you sure you want to permanently delete your account?",
-        "PremiumMemberView_deleteDesc": "All data associated with your account will be deleted and cannot be recovered."
+        "PremiumMemberView_deleteDesc": "All data associated with your account will be deleted and cannot be recovered.",
 
+        "AllChatListView_title":"All Conversations",
+        "AllChatListView_1st_btn":"AI Conversations",
+       "AllChatListView_2nd_btn":"Analysis Conversations",
+
+      "chat_ai_title_1": "How to Understand Music Theory Basics and Phrase Structure 1",
+      "chat_ai_title_2": "How to Understand Music Theory Basics and Phrase Structure 2",
+      "chat_ai_title_3": "How to Understand Music Theory Basics and Phrase Structure 3",
+      "chat_ai_title_4": "How to Understand Music Theory Basics and Phrase Structure 4",
+      "chat_subtitle": "Understanding the basics of music theory...",
+
+      "chat_analysis_title_1": "Performance Analysis 1",
+      "chat_analysis_title_2": "Performance Analysis 2",
+      "chat_analysis_title_3": "Performance Analysis 3",
+      "chat_analysis_title_4": "Performance Analysis 4",
+
+
+      "chat_delete_confirm_title": "Confirm Deletion",
+      "chat_delete_confirm_message": "Are you sure you want to delete this conversation? This action cannot be undone.",
+      "chat_delete_button": "Delete",
+      "chat_cancel_button": "Cancel",
+      "chat_snackbar_title": "Tapped",
 
 
 
@@ -281,6 +302,31 @@ class Languages extends Translations{
       "PremiumMemberView_delete": "刪除帳戶",
       "PremiumMemberView_deleteConfirm": "您確定要永久刪除您的帳戶嗎？",
       "PremiumMemberView_deleteDesc": "與您帳戶關聯的所有資料都將被刪除且無法恢復。",
+
+      "AllChatListView_title":"所有對話",
+      "AllChatListView_1st_btn":"AI 對話",
+      "AllChatListView_2nd_btn":"分析對話",
+
+
+      "chat_ai_title_1": "如何理解樂理基礎和樂句結構1",
+      "chat_ai_title_2": "如何理解樂理基礎和樂句結構2",
+      "chat_ai_title_3": "如何理解樂理基礎和樂句結構3",
+      "chat_ai_title_4": "如何理解樂理基礎和樂句結構4",
+      "chat_subtitle": "理解音樂理論的基礎...",
+
+      "chat_analysis_title_1": "演奏分析1",
+      "chat_analysis_title_2": "演奏分析2",
+      "chat_analysis_title_3": "演奏分析3",
+      "chat_analysis_title_4": "演奏分析4",
+
+
+
+      "chat_delete_confirm_title": "確認刪除",
+      "chat_delete_confirm_message": "您確定要刪除此對話嗎？此操作無法撤銷。",
+      "chat_delete_button": "刪除",
+      "chat_cancel_button": "取消",
+      "chat_snackbar_title": "已點擊",
+
 
 
 

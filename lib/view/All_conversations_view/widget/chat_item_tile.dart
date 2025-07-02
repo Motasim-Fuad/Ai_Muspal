@@ -1,3 +1,4 @@
+// ChatItemTile.dart - with localization
 import 'package:ai_muspal/resource/asseets/image_assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,22 +49,21 @@ class _ChatItemTileState extends State<ChatItemTile>
   Future<void> _showConfirmDialog(BuildContext context) async {
     final confirmed = await showCupertinoModalPopup<bool>(
       context: context,
-      builder:
-          (BuildContext context) => CupertinoActionSheet(
-            title: const Text('確認刪除'),
-            message: const Text('您確定要刪除此對話嗎？此操作無法撤銷。'),
-            actions: [
-              CupertinoActionSheetAction(
-                isDestructiveAction: true,
-                onPressed: () => Navigator.of(context).pop(true),
-                child: const Text('刪除'),
-              ),
-            ],
-            cancelButton: CupertinoActionSheetAction(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('取消'),
-            ),
+      builder: (BuildContext context) => CupertinoActionSheet(
+        title: Text('chat_delete_confirm_title'.tr),
+        message: Text('chat_delete_confirm_message'.tr),
+        actions: [
+          CupertinoActionSheetAction(
+            isDestructiveAction: true,
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text('chat_delete_button'.tr),
           ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: Text('chat_cancel_button'.tr),
+        ),
+      ),
     );
 
     if (confirmed == true) {
@@ -84,7 +84,6 @@ class _ChatItemTileState extends State<ChatItemTile>
       onHorizontalDragEnd: _handleDragEnd,
       child: Stack(
         children: [
-          // RED BACKGROUND DELETE BUTTON
           Positioned.fill(
             child: Align(
               alignment: Alignment.centerRight,
@@ -98,20 +97,17 @@ class _ChatItemTileState extends State<ChatItemTile>
               ),
             ),
           ),
-
-          // FOREGROUND (LIST TILE)
           Transform.translate(
             offset: Offset(_dragExtent, 0),
             child: Container(
               color: Colors.white,
               child: ListTile(
-                leading:
-                    Get.find<AllChatListViewModel>().selectedTabIndex.value == 0
-                        ? null
-                        : SizedBox(
-                          height: 40,
-                          child: SvgPicture.asset(ImageAssets.analyze_profile1),
-                        ),
+                leading: Get.find<AllChatListViewModel>().selectedTabIndex.value == 0
+                    ? null
+                    : SizedBox(
+                  height: 40,
+                  child: SvgPicture.asset(ImageAssets.analyze_profile1),
+                ),
                 title: Text(widget.chat.title),
                 subtitle: Text(
                   widget.chat.subtitle,
@@ -122,7 +118,7 @@ class _ChatItemTileState extends State<ChatItemTile>
                   widget.chat.time,
                   style: const TextStyle(fontSize: 12),
                 ),
-                onTap: () => Get.snackbar("Tapped", widget.chat.title),
+                onTap: () => Get.snackbar("chat_snackbar_title".tr, widget.chat.title),
               ),
             ),
           ),

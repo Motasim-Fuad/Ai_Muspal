@@ -13,7 +13,7 @@ class AllChatListView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('所有對話'),
+        title:  Text('AllChatListView_title'.tr),
         centerTitle: true,
         leading: const BackButton(),
       ),
@@ -39,7 +39,7 @@ class AllChatListView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         alignment: Alignment.center,
                         child: Text(
-                          'AI 對話',
+                          'AllChatListView_1st_btn'.tr,
                           style: TextStyle(
                             color:
                                 controller.selectedTabIndex.value == 0
@@ -66,7 +66,7 @@ class AllChatListView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         alignment: Alignment.center,
                         child: Text(
-                          '分析對話',
+                          'AllChatListView_2nd_btn'.tr,
                           style: TextStyle(
                             color:
                                 controller.selectedTabIndex.value == 1
