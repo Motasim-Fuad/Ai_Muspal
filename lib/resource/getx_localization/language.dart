@@ -164,6 +164,25 @@ class Languages extends Translations{
 
 
 
+      "musicChat_title": "New Chat",
+      "musicChat_botName": "Violin bot",
+      "musicChat_reset": "Reset Complete",
+      "musicChat_resetMessage": "Message limit cleared",
+      "musicChat_limitWarning": "Today's message limit reached",
+      "musicChat_upgrade": "Upgrade",
+      "musicChat_upgradeSuccess": "Upgrade Successful",
+      "musicChat_premiumWelcome": "You are now a Premium member",
+      "musicChat_startHint": "Start a new conversation",
+      "musicChat_uploadAttachment": "Upload Attachment",
+      "musicChat_camera": "Camera",
+      "musicChat_gallery": "Gallery",
+      "musicChat_file": "File",
+      "musicChat_pdfFile": "PDF File",
+      "musicChat_wordFile": "Word Document",
+      "musicChat_genericFile": "File" ,
+
+
+
 
     },
 
@@ -327,6 +346,23 @@ class Languages extends Translations{
       "chat_cancel_button": "取消",
       "chat_snackbar_title": "已點擊",
 
+
+      "musicChat_title": "新的對話",
+      "musicChat_botName": "小提琴機器人",
+      "musicChat_reset": "重設完成",
+      "musicChat_resetMessage": "訊息限制已清除",
+      "musicChat_limitWarning": "已達到今天對話上限",
+      "musicChat_upgrade": "前往升級",
+      "musicChat_upgradeSuccess": "升級成功",
+      "musicChat_premiumWelcome": "您現在是 Premium 會員",
+      "musicChat_startHint": "開始新對話",
+      "musicChat_uploadAttachment": "上傳附件",
+      "musicChat_camera": "相機",
+      "musicChat_gallery": "相簿",
+      "musicChat_file": "檔案",
+      "musicChat_pdfFile": "PDF 檔案",
+      "musicChat_wordFile": "Word 文件",
+      "musicChat_genericFile": "檔案",
 
 
 

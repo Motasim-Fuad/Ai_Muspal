@@ -13,7 +13,7 @@ class CupertinoDialogButton extends StatelessWidget {
           context: context,
           builder: (context) {
             return CupertinoAlertDialog(
-              title: const Text('確認取消'),
+              title:  Text('確認取消'),
               content: const Text(
                 'Are you sure you want to delete your account? This action cannot be undone!',
               ),

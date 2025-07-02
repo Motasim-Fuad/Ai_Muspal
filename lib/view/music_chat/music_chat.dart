@@ -1,6 +1,6 @@
+// MusicChatView.dart - Localized version
 import 'dart:io';
 import 'package:ai_muspal/resource/App_routes/routes_name.dart';
-
 import 'package:ai_muspal/view/music_chat/widget/typing_loading/tiping_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,24 +16,16 @@ class MusicChatView extends StatefulWidget {
   State<MusicChatView> createState() => _MusicChatViewState();
 }
 
-class _MusicChatViewState extends State<MusicChatView>
-    with WidgetsBindingObserver {
+class _MusicChatViewState extends State<MusicChatView> with WidgetsBindingObserver {
   final MusicChatViewModel controller = Get.find();
-
   late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-
-    // Observe changes to the widget binding (keyboard, etc.)
     WidgetsBinding.instance.addObserver(this);
-
-    // Scroll to bottom when new messages arrive
-    ever(controller.chatMessages, (_) {
-      _scrollToBottom(delay: 100);
-    });
+    ever(controller.chatMessages, (_) => _scrollToBottom(delay: 100));
   }
 
   @override
@@ -59,12 +51,8 @@ class _MusicChatViewState extends State<MusicChatView>
   void didChangeMetrics() {
     final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
     final isKeyboardOpen = bottomInset > 0;
-
     if (isKeyboardOpen) {
-      // Scroll after keyboard transition
-      Future.delayed(const Duration(milliseconds: 150), () {
-        _scrollToBottom();
-      });
+      Future.delayed(const Duration(milliseconds: 150), () => _scrollToBottom());
     }
   }
 
@@ -91,26 +79,22 @@ class _MusicChatViewState extends State<MusicChatView>
       child: Row(
         children: [
           BackButton(onPressed: () => Get.back()),
-          const CircleAvatar(
-            backgroundImage: AssetImage(ImageAssets.music_chat),
-          ),
+          const CircleAvatar(backgroundImage: AssetImage(ImageAssets.music_chat)),
           const SizedBox(width: 12),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("新的對話", style: TextStyle(fontSize: 16)),
-              Text("Violin bot", style: TextStyle(fontSize: 12)),
+              Text('musicChat_title'.tr, style: const TextStyle(fontSize: 16)),
+              Text('musicChat_botName'.tr, style: const TextStyle(fontSize: 12)),
             ],
           ),
-
-          Spacer(),
-          // 🔴 Reset Limit Button (for development or manual reset)
+          const Spacer(),
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.red),
             onPressed: () {
               controller.hasReachedLimit.value = false;
               controller.messagesSentToday.value = 0;
-              Utils.snackBar("重設完成", "訊息限制已清除");
+              Utils.snackBar('musicChat_reset'.tr, 'musicChat_resetMessage'.tr);
             },
           ),
         ],
@@ -138,33 +122,27 @@ class _MusicChatViewState extends State<MusicChatView>
                     children: [
                       const Icon(Icons.warning, color: Colors.orange),
                       const SizedBox(width: 8),
-                      const Expanded(
-                        child: Text(
-                          "已達到今天對話上限",
-                          style: TextStyle(fontSize: 14),
-                        ),
+                      Expanded(
+                        child: Text('musicChat_limitWarning'.tr, style: const TextStyle(fontSize: 14)),
                       ),
                       TextButton(
                         onPressed: () async {
-                          final upgraded = await Get.toNamed(
-                            RouteName.premiumMemberView,
-                          );
+                          final upgraded = await Get.toNamed(RouteName.premiumMemberView);
                           if (upgraded == true) {
                             controller.isPremiumUser = true;
                             controller.hasReachedLimit.value = false;
                             controller.messagesSentToday.value = 0;
-                            Utils.snackBar("升級成功", "您現在是 Premium 會員");
+                            Utils.snackBar('musicChat_upgradeSuccess'.tr, 'musicChat_premiumWelcome'.tr);
                           }
                         },
-                        child: const Text("前往升級"),
+                        child: Text('musicChat_upgrade'.tr),
                       ),
                     ],
                   ),
                 ),
-
               Expanded(
                 child: ListView.builder(
-                  controller: _scrollController, // ✅ Attach controller
+                  controller: _scrollController,
                   itemCount: messages.length + (isTyping ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (index == messages.length && isTyping) {
@@ -180,62 +158,52 @@ class _MusicChatViewState extends State<MusicChatView>
       ),
     );
   }
-}
 
-Widget _buildTypingIndicator() {
-  return Align(
-    alignment: Alignment.centerLeft,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          const CircleAvatar(
-            radius: 12,
-            backgroundImage: AssetImage(ImageAssets.music_chat),
-          ),
-          const SizedBox(width: 8),
-          TypingLoadingWidget(),
-        ],
+  Widget _buildTypingIndicator() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          children: [
+            const CircleAvatar(radius: 12, backgroundImage: AssetImage(ImageAssets.music_chat)),
+            const SizedBox(width: 8),
+            TypingLoadingWidget(),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class ChatInputField extends StatelessWidget {
   final MusicChatViewModel controller;
-
   const ChatInputField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       final hasAttachment = controller.pendingAttachmentPath.isNotEmpty;
+      final isEnable = (controller.isInputNotEmpty.value || hasAttachment) && !controller.hasReachedLimit.value;
 
       return SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
-              // Add Button
               IconButton(
                 onPressed: _showAttachmentBottomSheet,
                 icon: const Icon(Icons.add_circle_outline, size: 28),
               ),
-
-              // Message Input Container
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Row(
                     children: [
-                      // Optional attachment preview inside input
                       if (hasAttachment)
                         Stack(
                           children: [
@@ -265,21 +233,12 @@ class ChatInputField extends StatelessWidget {
                             ),
                           ],
                         ),
-
                       const SizedBox(width: 8),
-
-                      // Text input
                       Expanded(
                         child: TextField(
                           controller: controller.messageController,
-                          onChanged: (value) {
-                            controller.isInputNotEmpty.value =
-                                value.trim().isNotEmpty;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: '開始新對話', // "Start a new conversation"
-                          ),
+                          onChanged: (value) => controller.isInputNotEmpty.value = value.trim().isNotEmpty,
+                          decoration: InputDecoration(border: InputBorder.none, hintText: 'musicChat_startHint'.tr),
                           maxLines: null,
                         ),
                       ),
@@ -287,33 +246,15 @@ class ChatInputField extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(width: 8),
-
-              // Send Button
-              Obx(() {
-                final isEnable =
-                    (controller.isInputNotEmpty.value ||
-                        controller.pendingAttachmentPath.isNotEmpty) &&
-                    !controller
-                        .hasReachedLimit
-                        .value; // 🚫 Disable if limit reached
-
-                return GestureDetector(
-                  onTap:
-                      isEnable
-                          ? () {
-                            controller.sendMessage();
-                          }
-                          : null,
-                  child: CircleAvatar(
-                    radius: 22,
-                    backgroundColor:
-                        isEnable ? const Color(0xFFFF5A5F) : Colors.grey,
-                    child: const Icon(Icons.arrow_forward, color: Colors.white),
-                  ),
-                );
-              }),
+              GestureDetector(
+                onTap: isEnable ? controller.sendMessage : null,
+                child: CircleAvatar(
+                  radius: 22,
+                  backgroundColor: isEnable ? const Color(0xFFFF5A5F) : Colors.grey,
+                  child: const Icon(Icons.arrow_forward, color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),
@@ -332,18 +273,13 @@ class ChatInputField extends StatelessWidget {
         child: Wrap(
           children: [
             ListTile(
-              title: Text("上傳附件"),
-              trailing: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(Icons.close),
-              ),
+              title: Text('musicChat_uploadAttachment'.tr),
+              trailing: IconButton(onPressed: Get.back, icon: const Icon(Icons.close)),
             ),
-            Divider(color: Colors.grey, height: 1),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.camera_alt_outlined),
-              title: const Text("Camera"),
+              title: Text('musicChat_camera'.tr),
               onTap: () {
                 Get.back();
                 controller.pickImageFromCamera();
@@ -351,7 +287,7 @@ class ChatInputField extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.photo_camera_back_outlined),
-              title: const Text("Gallery"),
+              title: Text('musicChat_gallery'.tr),
               onTap: () {
                 Get.back();
                 controller.pickImageFromGallery();
@@ -359,7 +295,7 @@ class ChatInputField extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.file_present_outlined),
-              title: const Text("File"),
+              title: Text('musicChat_file'.tr),
               onTap: () {
                 Get.back();
                 controller.pickFile();
@@ -376,43 +312,35 @@ class ChatInputField extends StatelessWidget {
 
 class Message extends StatelessWidget {
   final ChatMessage message;
-
   const Message({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
     final isSender = message.isSender;
     final alignment = isSender ? Alignment.centerRight : Alignment.centerLeft;
-    final color = isSender ? Color(0xFFFF5D47) : Colors.grey.shade200;
+    final color = isSender ? const Color(0xFFFF5D47) : Colors.grey.shade200;
 
     return Align(
       alignment: alignment,
       child: Row(
-        mainAxisAlignment:
-            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isSender)
             const Padding(
               padding: EdgeInsets.only(right: 8.0),
-              child: CircleAvatar(
-                radius: 16,
-                backgroundImage: AssetImage(ImageAssets.music_chat),
-              ),
+              child: CircleAvatar(radius: 16, backgroundImage: AssetImage(ImageAssets.music_chat)),
             ),
           Flexible(
             child: Container(
               margin: EdgeInsets.only(
                 top: 4,
                 bottom: 4,
-                left: isSender ? 50 : 0, // ✅ Add margin to separate sides
+                left: isSender ? 50 : 0,
                 right: isSender ? 0 : 50,
               ),
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(12),
-              ),
+              decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(12)),
               child: _buildMessageContent(),
             ),
           ),
@@ -422,60 +350,28 @@ class Message extends StatelessWidget {
   }
 
   Widget _buildMessageContent() {
-    List<Widget> contentWidgets = [];
+    final contentWidgets = <Widget>[];
 
-    // Attachment
     if (message.attachmentPath != null) {
       if (message.messageType == ChatMessageType.image) {
         contentWidgets.add(
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
-            child: Image.file(
-              File(message.attachmentPath!),
-              height: 200,
-              width: 200,
-            ),
-          ),
-        );
-      } else if (message.messageType == ChatMessageType.pdf) {
-        contentWidgets.add(
-          _buildFileTile(
-            Icons.picture_as_pdf,
-            "PDF File",
-            message.attachmentPath!,
-          ),
-        );
-      } else if (message.messageType == ChatMessageType.doc) {
-        contentWidgets.add(
-          _buildFileTile(
-            Icons.description,
-            "Word Document",
-            message.attachmentPath!,
+            child: Image.file(File(message.attachmentPath!), height: 200, width: 200),
           ),
         );
       } else {
-        contentWidgets.add(
-          _buildFileTile(
-            Icons.insert_drive_file,
-            "File",
-            message.attachmentPath!,
-          ),
-        );
+        final icon = message.messageType == ChatMessageType.pdf ? Icons.picture_as_pdf : Icons.description;
+        final label = message.messageType == ChatMessageType.pdf ? 'musicChat_pdfFile'.tr : 'musicChat_wordFile'.tr;
+        contentWidgets.add(_buildFileTile(icon, label, message.attachmentPath!));
       }
     }
 
-    // Text
     if (message.text.isNotEmpty) {
-      contentWidgets.add(
-        Text(message.text, style: const TextStyle(fontSize: 16)),
-      );
+      contentWidgets.add(Text(message.text, style: const TextStyle(fontSize: 16)));
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: contentWidgets,
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: contentWidgets);
   }
 
   Widget _buildFileTile(IconData icon, String label, String path) {
@@ -484,12 +380,7 @@ class Message extends StatelessWidget {
       children: [
         Icon(icon, color: Colors.redAccent),
         const SizedBox(width: 8),
-        Flexible(
-          child: Text(
-            label,
-            style: const TextStyle(fontSize: 16, color: Colors.black87),
-          ),
-        ),
+        Flexible(child: Text(label, style: const TextStyle(fontSize: 16, color: Colors.black87))),
       ],
     );
   }
