@@ -1,4 +1,3 @@
-
 import 'package:ai_muspal/resource/asseets/image_assets.dart';
 import 'package:ai_muspal/resource/compunents/RoundButton.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../resource/App_routes/routes_name.dart';
-
 
 class PianoAnalysisView extends StatefulWidget {
   const PianoAnalysisView({super.key});
@@ -20,12 +18,11 @@ class _PianoAnalysisViewState extends State<PianoAnalysisView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("分析對話"),
+        title: Text("pianoAnalysis_title".tr),
         centerTitle: true,
         actions: [
-          SvgPicture.asset(ImageAssets.logo,height: 30,),
-          SizedBox(width: 20,)
-
+          SvgPicture.asset(ImageAssets.logo, height: 30),
+          const SizedBox(width: 20),
         ],
       ),
       body: Padding(
@@ -48,9 +45,9 @@ class _PianoAnalysisViewState extends State<PianoAnalysisView> {
             SizedBox(
               width: double.infinity,
               child: RoundButton(
-                title: "開啟分析",
+                title: "pianoAnalysis_button".tr,
                 onPress: () {
-                 Get.toNamed(RouteName.pianoAnalysisChatView);
+                  Get.toNamed(RouteName.pianoAnalysisChatView);
                 },
               ),
             ),

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../models/analysis_model/piano_analysis_chat_model.dart';
 import '../../../models/analysis_model/violin_analysis__chat_model.dart';
 
@@ -34,7 +33,7 @@ class PianoAnalysisChatViewModel extends GetxController {
       Future.delayed(Duration(seconds: 1), () {
         messages.add(
           PianoAnalysisChatModel(
-            content: "Bot: $text",
+            content: "bot_response_prefix".trParams({"msg": text}),
             audio: '',
             video: '',
             isSender: false,
@@ -44,8 +43,7 @@ class PianoAnalysisChatViewModel extends GetxController {
     }
   }
 
-  //music sheed
-
+  // Music sheet picker
   Future<void> pickSheetMusic() async {
     final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.image,
@@ -57,33 +55,33 @@ class PianoAnalysisChatViewModel extends GetxController {
       // 1. Add user's upload message
       messages.add(
         PianoAnalysisChatModel(
-          content: '使用者上傳了樂譜。',
+          content: 'user_uploaded_sheet_music'.tr,
           audio: '',
           video: '',
           isSender: true,
         ),
       );
 
-      // ✅ Show loading state
+      // Show loading state
       isAnalyzing.value = true;
 
-      // 2. Simulate analysis delay
-      await Future.delayed(Duration(seconds: 5)); // Replace with real API call
+      // 2. Simulate analysis delay (replace with API call)
+      await Future.delayed(Duration(seconds: 5));
 
       // 3. Add bot response
       messages.add(
         PianoAnalysisChatModel(
-          content: '分析完成！您可以查看分析報告。',
+          content: 'analysis_complete'.tr,
           audio: '',
           video: '',
           isSender: false,
         ),
       );
 
-      // ✅ Hide loading state
+      // Hide loading state
       isAnalyzing.value = false;
 
-      // ✅ Move to report view step
+      // Move to report view step
       currentStep.value = 4;
     }
   }
@@ -93,28 +91,28 @@ class PianoAnalysisChatViewModel extends GetxController {
     scoreName.value = name;
     messages.add(
       PianoAnalysisChatModel(
-        content: "Score Name: $name",
+        content: "score_name_label".trParams({"name": name}),
         audio: '',
         video: '',
         isSender: true,
       ),
     );
 
-    // ✅ Show loading state
+    // Show loading state
     isAnalyzing.value = true;
 
     Future.delayed(Duration(seconds: 5), () {
       messages.add(
         PianoAnalysisChatModel(
-          content: "Bot received the score name.$name",
+          content: "bot_received_score_name".trParams({"name": name}),
           audio: '',
           video: '',
           isSender: false,
         ),
       );
-    });
 
-    isAnalyzing.value = false;
+      isAnalyzing.value = false;
+    });
   }
 
   /// Upload and send audio or video file
@@ -135,13 +133,12 @@ class PianoAnalysisChatViewModel extends GetxController {
         ),
       );
 
-      // Mark upload as completed
       uploadCompleted.value = true;
 
       Future.delayed(Duration(seconds: 5), () {
         messages.add(
           PianoAnalysisChatModel(
-            content: "Bot received your $type file.",
+            content: "bot_received_file".trParams({"type": type}),
             audio: '',
             video: '',
             isSender: false,

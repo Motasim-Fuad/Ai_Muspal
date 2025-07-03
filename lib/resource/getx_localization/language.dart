@@ -63,7 +63,23 @@ class Languages extends Translations{
       "TermsOfServiceView_7th":"vening country urgent level Yingyang hand egg rises Dan eats and flies wind will Zhu! You send temple is jumping drink since now feather urgent tail full too strip owe, that is to show strange that horse temple, food country several color room learn fine year door summer root.",
       "TermsOfServiceView_8th":"The last of my children you now have all the things in the class right to complain. She took the North language girl meat pen shoot through the butterfly bright beg blade help, caught the class rain home land Ni, Ji from the B school, Zhu Ge land tree hide two ancestors.",
       "TermsOfServiceView_9th":"Beiyuan is also like. One yuan to support milk, the ear wind wrong words will be yang milk borrowed to buy the past and the summer air thought.",
-      "PrivacyView_title":"Privacy",
+
+
+      "PrivacyView_title": "Privacy Policy",
+      "PrivacyView_paragraph1": "Sample paragraph 1 in English about privacy policy content...",
+      "PrivacyView_paragraph2": "Sample paragraph 2 in English about data usage and protection...",
+      "PrivacyView_paragraph3": "Sample paragraph 3 explaining how data is handled...",
+      "PrivacyView_paragraph4": "Sample paragraph 4 with more details about privacy...",
+      "PrivacyView_paragraph5": "Sample paragraph 5 about user rights...",
+      "PrivacyView_paragraph6": "Sample paragraph 6 with contact information...",
+      "PrivacyView_paragraph7": "Sample paragraph 7 with legal disclaimers...",
+      "PrivacyView_paragraph8": "Sample paragraph 8 with updates and changes...",
+      "PrivacyView_paragraph9": "Sample paragraph 9 concluding the privacy policy.",
+
+
+
+
+
       "UpgarteMemberShiftView_title":"Upgrade AI MusPal",
       "UpgarteMemberShiftView_1st":"Valuable Member",
       "UpgarteMemberShiftView_2nd":"Platinum Member",
@@ -87,7 +103,7 @@ class Languages extends Translations{
       "PlatinumMemberView_c1_2nd": "Only HK\$27/hour on average",
       "PlatinumMemberView_c2_1st": "Unlimited messages per month",
       "PlatinumMemberView_c2_2nd": "Up to 2,000 characters per message",
-      "PlatinumMemberView_c2_3rd": "Up to 10 hours of AI music rating per month",
+      "PlatinumMemberView_c2_3rd": "Up to 10 hours of AI music  rating per month",
       "PlatinumMemberView_c2_4th": "3,000 music analysis reports per month",
       "PlatinumMemberView_c3_title": "Auto-renewal instructions",
       "PlatinumMemberView_c3_1st": "1. Payment: Subscriptions are automatically renewed. Payment will be deducted from your Apple iTunes account after purchase confirmation.",
@@ -125,8 +141,8 @@ class Languages extends Translations{
         "PremiumMemberView_planIncludes": "Plan Includes",
         "PremiumMemberView_feature1": "Unlimited messages per month",
         "PremiumMemberView_feature2": "Up to 2,000 characters per message",
-        "PremiumMemberView_feature3": "Up to 10 hours of AI audio scoring per month",
-        "PremiumMemberView_feature4": "Up to 3,000 music analysis reports per month",
+        "PremiumMemberView_feature3": "Up to 10 hours of AI audio scoring \n per month",
+        "PremiumMemberView_feature4": "Up to 3,000 music analysis reports \n per month",
         "PremiumMemberView_manage": "Manage Subscription",
         "PremiumMemberView_upgrade": "Upgrade to Premium",
         "PremiumMemberView_about": "About Us",
@@ -226,6 +242,44 @@ class Languages extends Translations{
 
       "chatReport_point": "pts",
 
+      "pianoAnalysis_title": "Analysis Chat",
+      "pianoAnalysis_button": "Start Analysis",
+
+      "pianoChat_welcomeMsg": "Welcome! When you're ready, upload your audio or video. Longer audio means longer analysis time.",
+      "pianoChat_newChat": "New Chat",
+      "pianoChat_botName": "Piano bot",
+      "pianoChat_audioFile": "Audio File",
+      "pianoChat_videoFile": "Video File",
+      "pianoChat_unsupported": "Unsupported message type",
+      "pianoChat_uploadAudio": "Upload Audio",
+      "pianoChat_uploadVideo": "Upload Video",
+      "pianoChat_uploadAudioVideo": "Upload Audio/Video",
+      "pianoChat_uploadSheetMusic": "Upload Sheet Music",
+      "pianoChat_skip": "Skip",
+      "pianoChat_provideScoreName": "Provide Score Name",
+      "pianoChat_reupload": "Re-upload",
+      "pianoChat_confirmScoreName": "Confirm Score Name",
+      "pianoChat_scoreNameIs": "Score name is:",
+      "pianoChat_clickBackToReenter": "Click back to re-enter score name.",
+      "pianoChat_confirmAnalyze": "Confirm and Analyze",
+      "pianoChat_userSkippedSheetMusic": "User skipped sheet music upload.",
+      "pianoChat_userSkippedScoreName": "User skipped score name input.",
+      "pianoChat_uploading": "Uploading...",
+      "pianoChat_seeReport": "View Report",
+
+
+      "bot_response_prefix": "Bot: @msg",
+      "user_uploaded_sheet_music": "User uploaded sheet music.",
+      "analysis_complete": "Analysis complete! You may check the report.",
+      "score_name_label": "Score Name: @name",
+      "bot_received_score_name": "Bot received the score name: @name",
+      "bot_received_file": "Bot received your @type file."
+
+
+
+
+
+
 
 
 
@@ -290,7 +344,23 @@ class Languages extends Translations{
       "TermsOfServiceView_7th":"晚國急平英央手蛋升旦吃又飛風會朱！尤送寺正跳喝自今羽急尾飽太條欠，即示怪即馬寺，食國几彩房學細年門夏根。",
       "TermsOfServiceView_8th":"尾我童几您現具西的都斤扒課右訴欠。她帶而北語女肉筆拍貫蝶亮乞刃助，抓課雨家了地尼，吉由乙校，朱歌地樹躲兩祖。",
       "TermsOfServiceView_9th":"貝原也像。一元支奶門耳風錯語會陽奶借色買昔且夏氣想到。",
-      "PrivacyView_title":"隱私",
+
+
+      "PrivacyView_title": "隱私政策",
+      "PrivacyView_paragraph1": "假亭幼才朱字往燈只告裝南，喜澡米開兌象虎前寸福。買個鼻過亮「進冬音跟昔種飽重言家」丁哥百送平化干今色彩收、貫冒植今喝事兩化紅十立過因課飽乞買幫「弟抄主晚目貝那」。",
+      "PrivacyView_paragraph2": "口昔教或十你會光早洋愛左現爸進口吹肖反太！昔鼻空南欠遠巴氣眼日。父自朵常。它聲下吃對怎年即音因蝴不誰，一兆外日叫買衣見？外把以相毛林。",
+      "PrivacyView_paragraph3": "杯好告快高波買她甲。夕風話只愛姐綠老。呢助邊吹，進扒吹老。世因候。更祖哪明條北書荷太院遠飯後喝幫怕尼氣門很，話用白瓜根秋夏。子金胡由游少送彩七且你平語新語美呢。",
+      "PrivacyView_paragraph4": "勿兩菜「春青火開」從下停回古更開帽問夕乍福己黃。裏七壯歌旁十，亭路五蝴千河貝，松申開。牛壯秋貓它天上雨訴多蝴食裝石。",
+      "PrivacyView_paragraph5": "采回送兩神扒苦怎雲事。還青穿肉交花聲陽壯；往六問爬合聲寸人植幼訴夕行兩山？戶借往貫陽晚荷昌兄，爸青人步共室也朱什回忍能園苦！左外丟尾？做貝自，天次亭泉我。戶尺畫。",
+      "PrivacyView_paragraph6": "晚國急平英央手蛋升旦吃又飛風會朱！尤送寺正跳喝自今羽急尾飽太條欠，即示怪即馬寺，食國几彩房學細年門夏根。",
+      "PrivacyView_paragraph7": "尾我童几您現具西的都斤扒課右訴欠。她帶而北語女肉筆拍貫蝶亮乞刃助，抓課雨家了地尼，吉由乙校，朱歌地樹躲兩祖。",
+      "PrivacyView_paragraph8": "貝原也像。一元支奶門耳風錯語會陽奶借色買昔且夏氣想到。",
+      "PrivacyView_paragraph9": "（最後一段示例文字）",
+
+
+
+
+
       "UpgarteMemberShiftView_title":"升級AI MusPal",
       "UpgarteMemberShiftView_1st":"尊貴會員",
       "UpgarteMemberShiftView_2nd":"白金會員",
@@ -457,6 +527,41 @@ class Languages extends Translations{
       "chatReport_overallCommentContent": "非常不錯！了解基本的樂句概念。\n\n音準：一組樂句構成樂段，理解不同樂段之間的關係和對比。\n\n節拍：了解基本的樂句概念，樂句通常是音樂中的一句完整表達，類似於語言中的一句話。\n\n強弱變化：一組樂句構成樂段，理解不同樂段之間的關係和對比。",
 
       "chatReport_point": "分",
+
+      "pianoAnalysis_title": "分析對話",
+      "pianoAnalysis_button": "開啟分析",
+
+      "pianoChat_welcomeMsg": "歡迎您，如果您準備好了，可以隨時上傳你的音頻或視頻，我會進行下一步分析。, 音頻愈長，分析時間會愈久。",
+      "pianoChat_newChat": "新的對話",
+      "pianoChat_botName": "Piano bot",
+      "pianoChat_audioFile": "音頻文件",
+      "pianoChat_videoFile": "視頻文件",
+      "pianoChat_unsupported": "不支援的訊息類型",
+      "pianoChat_uploadAudio": "上傳音頻",
+      "pianoChat_uploadVideo": "上傳視頻",
+      "pianoChat_uploadAudioVideo": "上傳音頻/視頻",
+      "pianoChat_uploadSheetMusic": "上傳樂譜",
+      "pianoChat_skip": "略過",
+      "pianoChat_provideScoreName": "供樂譜名稱",
+      "pianoChat_reupload": "重新上傳",
+      "pianoChat_confirmScoreName": "確認樂譜名稱",
+      "pianoChat_scoreNameIs": "樂譜名稱是：",
+      "pianoChat_clickBackToReenter": "點選返回可重新輸入樂譜名稱。",
+      "pianoChat_confirmAnalyze": "確認並進行分析",
+      "pianoChat_userSkippedSheetMusic": "用戶跳過樂譜上傳。",
+      "pianoChat_userSkippedScoreName": "用戶跳過樂譜名稱輸入。",
+      "pianoChat_uploading": "上傳中...",
+      "pianoChat_seeReport": "查看報告",
+
+
+      "bot_response_prefix": "机器人：@msg",
+      "user_uploaded_sheet_music": "使用者上傳了樂譜。",
+      "analysis_complete": "分析完成！您可以查看報告。",
+      "score_name_label": "樂譜名稱：@name",
+      "bot_received_score_name": "机器人已收到樂譜名稱：@name",
+      "bot_received_file": "机器人已收到您的@type文件。",
+
+
 
 
 

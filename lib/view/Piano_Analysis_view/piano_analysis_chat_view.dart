@@ -29,8 +29,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
     Future.delayed(Duration(milliseconds: 300), () {
       controller.messages.add(
         PianoAnalysisChatModel(
-          content: "歡迎您，如果您準備好了，可以隨時上傳你的音頻或視頻，我會進行下一步分析。,     意音頻愈長，分析時間會愈久。",
-
+          content: "pianoChat_welcomeMsg".tr,
           audio: '',
           video: '',
           isSender: false,
@@ -47,12 +46,13 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
           children: [
             SvgPicture.asset(ImageAssets.analyze_profile2, height: 30),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "新的對話",
+                  "pianoChat_newChat".tr,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
-                Text("Piano bot", style: TextStyle(fontSize: 13)),
+                Text("pianoChat_botName".tr, style: TextStyle(fontSize: 13)),
               ],
             ),
           ],
@@ -70,7 +70,6 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                   final isTyping = controller.isAnalyzing.value;
 
                   return ListView.builder(
-                    //controller: controller.scrollController, // ✅ attach controller
                     itemCount: messages.length + (isTyping ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (index == messages.length && isTyping) {
@@ -89,7 +88,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                 const SizedBox(width: 8),
                                 SizedBox(
                                   child:
-                                  TypingLoadingWidget(), //loading Container
+                                  TypingLoadingWidget(),
                                 ),
                               ],
                             ),
@@ -175,7 +174,6 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
 
               const SizedBox(width: 8),
 
-              // Input Container
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -189,12 +187,12 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                   child: TextField(
                     controller: scoreController,
                     onChanged: (value) => controller.scoreName.value = value.trim(),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: '與MusPal對話', // placeholder from image
+                      hintText: 'pianoChat_scoreInputHint'.tr,
                       hintStyle: TextStyle(
                         color: Colors.grey,
-                      ), // match faded text
+                      ),
                     ),
                     maxLines: 1,
                   ),
@@ -203,18 +201,15 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
 
               const SizedBox(width: 8),
 
-              // Send Button
               Obx(
                     () {
                   final isEnable = controller.scoreName.isNotEmpty;
                   return GestureDetector(
-
-                    onTap: isEnable ?() {
+                    onTap: isEnable ? () {
                       if (scoreController.text.trim().isNotEmpty) {
                         final name = scoreController.text.trim();
                         Get.back(); // Close input sheet
 
-                        // ✅ Show confirmation bottom sheet
                         Future.delayed(Duration(milliseconds: 300), () {
                           Get.bottomSheet(
                             Container(
@@ -230,13 +225,12 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Top Title + Close Button
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          '確認樂譜名稱',
+                                          'pianoChat_confirmScoreName'.tr,
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -250,8 +244,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                     ),
                                     SizedBox(height: 20),
 
-                                    // Music name
-                                    Text('樂譜名稱是：', style: TextStyle(fontSize: 16)),
+                                    Text('pianoChat_scoreNameIs'.tr, style: TextStyle(fontSize: 16)),
                                     SizedBox(height: 4),
                                     Text(
                                       name,
@@ -262,7 +255,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      '點選返回可重新輸入樂譜名稱。',
+                                      'pianoChat_clickBackToReenter'.tr,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Colors.grey,
@@ -270,23 +263,20 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                     ),
                                     SizedBox(height: 24),
 
-                                    // Primary Button
                                     SizedBox(
                                       width: double.infinity,
                                       child: ElevatedButton(
                                         onPressed: () {
                                           controller.addScoreName(name);
                                           controller.currentStep.value = 3;
-                                          Get.back(); // Close bottom sheet
+                                          Get.back();
 
-                                          // Show TypingLoadingWidget
                                           controller.isAnalyzing.value = true;
 
-                                          // Optional: Simulate delay then stop typing and add bot reply
                                           Future.delayed(Duration(seconds: 2), () {
                                             controller.messages.add(
                                               PianoAnalysisChatModel(
-                                                content: "正在分析中，請稍候…",
+                                                content: "pianoChat_analysisInProgress".tr,
                                                 audio: '',
                                                 video: '',
                                                 isSender: false,
@@ -295,20 +285,15 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
 
                                             controller.isAnalyzing.value = false;
 
-                                            // Move to next step if needed
                                             controller.currentStep.value = 4;
                                           });
                                         },
 
-                                        child: Text('確認並進行分析'),
+                                        child: Text('pianoChat_confirmAnalyze'.tr),
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(
-                                            0xFFFF5A5F,
-                                          ), // Red like image
+                                          backgroundColor: Color(0xFFFF5A5F),
                                           foregroundColor: Colors.white,
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: 14,
-                                          ),
+                                          padding: EdgeInsets.symmetric(vertical: 14),
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(8),
                                           ),
@@ -317,21 +302,18 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                                     ),
                                     SizedBox(height: 12),
 
-                                    // Secondary Button (Outlined)
                                     SizedBox(
                                       width: double.infinity,
                                       child: OutlinedButton(
                                         onPressed: () => Get.back(),
-                                        child: Text('重新輸入'),
+                                        child: Text('pianoChat_reenter'.tr),
                                         style: OutlinedButton.styleFrom(
                                           foregroundColor: Color(0xFFFF5A5F),
                                           side: BorderSide(
                                             color: Color(0xFFFF5A5F),
                                             width: 1.5,
                                           ),
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: 14,
-                                          ),
+                                          padding: EdgeInsets.symmetric(vertical: 14),
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(8),
                                           ),
@@ -349,10 +331,10 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                       }
                     } : null,
 
-                    child:  CircleAvatar(
+                    child: CircleAvatar(
                       radius: 22,
                       backgroundColor:
-                      isEnable ?  Color(0xFFFF5A5F) : Colors.grey, // match icon background color from image
+                      isEnable ? Color(0xFFFF5A5F) : Colors.grey,
                       child: Icon(Icons.arrow_forward, color: Colors.white),
                     ),
                   );
@@ -375,7 +357,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
         children: [
           Icon(Icons.audiotrack, color: Colors.blue),
           SizedBox(width: 6),
-          Text("Audio File"),
+          Text("pianoChat_audioFile".tr),
         ],
       );
     } else if (msg.video.isNotEmpty) {
@@ -384,11 +366,11 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
         children: [
           Icon(Icons.videocam, color: Colors.green),
           SizedBox(width: 6),
-          Text("Video File"),
+          Text("pianoChat_videoFile".tr),
         ],
       );
     } else {
-      return Text("Unsupported message type");
+      return Text("pianoChat_unsupported".tr);
     }
   }
 
@@ -400,7 +382,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
           if (!controller.uploadCompleted.value) {
             // Step 1: Upload audio/video
             return RoundButton(
-              title: "上傳音頻/視頻",
+              title: "pianoChat_uploadAudioVideo".tr,
               onPress: () {
                 Get.bottomSheet(
                   Container(
@@ -415,7 +397,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                       children: [
                         ListTile(
                           leading: Icon(Icons.audiotrack),
-                          title: Text("Upload Audio"),
+                          title: Text("pianoChat_uploadAudio".tr),
                           onTap: () {
                             controller.pickMedia('audio');
                             Get.back();
@@ -423,7 +405,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                         ),
                         ListTile(
                           leading: Icon(Icons.videocam),
-                          title: Text("Upload Video"),
+                          title: Text("pianoChat_uploadVideo".tr),
                           onTap: () {
                             controller.pickMedia('video');
                             Get.back();
@@ -441,7 +423,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
               children: [
                 Expanded(
                   child: RoundButton(
-                    title: "上傳樂譜",
+                    title: "pianoChat_uploadSheetMusic".tr,
                     onPress: () {
                       controller.pickSheetMusic();
                     },
@@ -451,18 +433,18 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                 Expanded(
                   child: RoundButton(
                     buttonColor: Color(0xff000000),
-                    title: "略過",
+                    title: "pianoChat_skip".tr,
                     onPress: () {
                       controller.messages.add(
                         PianoAnalysisChatModel(
-                          content: "User skipped sheet music upload.",
+                          content: "pianoChat_userSkippedSheetMusic".tr,
                           audio: '',
                           video: '',
                           isSender: true,
                         ),
                       );
                       controller.sheetMusicHandled.value = true;
-                      controller.currentStep.value = 2; // ✅ Move to next step
+                      controller.currentStep.value = 2;
                     },
                   ),
                 ),
@@ -473,7 +455,7 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
               children: [
                 Expanded(
                   child: RoundButton(
-                    title: "供樂譜名稱",
+                    title: "pianoChat_provideScoreName".tr,
                     onPress: () {
                       _showMusicScoreNameInput();
                     },
@@ -482,12 +464,12 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                 SizedBox(width: 10),
                 Expanded(
                   child: RoundButton(
-                    title: "略過",
+                    title: "pianoChat_skip".tr,
                     buttonColor: Color(0xff000000),
                     onPress: () {
                       controller.messages.add(
                         PianoAnalysisChatModel(
-                          content: "User skipped score name input.",
+                          content: "pianoChat_userSkippedScoreName".tr,
                           audio: '',
                           video: '',
                           isSender: true,
@@ -505,20 +487,17 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                 SizedBox(width: 10),
                 Expanded(
                   child: RoundButton(
-                    title: "重新上傳",
+                    title: "pianoChat_reupload".tr,
                     buttonColor: Colors.grey,
                     onPress: () {
-                      // Reset states to step 0
                       controller.uploadCompleted.value = false;
                       controller.sheetMusicHandled.value = false;
                       controller.currentStep.value = 0;
                       controller.messages.clear();
-                      // Optionally reinitialize first message
                       Future.delayed(Duration(milliseconds: 300), () {
                         controller.messages.add(
                           PianoAnalysisChatModel(
-                            content:
-                            "歡迎您，如果您準備好了，可以隨時上傳你的音頻或視頻，我會進行下一步分析。,     意音頻愈長，分析時間會愈久。",
+                            content: "pianoChat_welcomeMsg".tr,
                             audio: '',
                             video: '',
                             isSender: false,
@@ -535,17 +514,16 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                   () => Column(
                 children: [
                   if (controller.isAnalyzing.value) ...[
-                    CircularProgressIndicator(), // Show typing loader
+                    CircularProgressIndicator(),
                     SizedBox(height: 10),
                   ],
                   RoundButton(
-                    title: "查看報告",
+                    title: "pianoChat_seeReport".tr,
                     buttonColor: AppColor.prymaryTextColor,
                     onPress:
                     controller.isAnalyzing.value
-                        ? null // Disable while loading
+                        ? null
                         : () {
-                      // Go to report page
                       Get.to(
                             () => ChatReportView(),
                         binding: ReportBinding(),
@@ -561,9 +539,9 @@ class _PianoAnalysisChatViewState extends State<PianoAnalysisChatView> {
                 Expanded(
                   child: RoundButton(
                     buttonColor: Color(0xff988a8a),
-                    title: "查看報告",
+                    title: "pianoChat_seeReport".tr,
                     onPress: () {
-                      //Get.to(() => ChatReportView(), binding: ReportBinding());
+                      // Optionally handle here
                     },
                   ),
                 ),
