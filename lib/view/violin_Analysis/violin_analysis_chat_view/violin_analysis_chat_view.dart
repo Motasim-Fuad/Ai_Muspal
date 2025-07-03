@@ -1,3 +1,5 @@
+
+
 import 'package:ai_muspal/View_Model/Controller/Violin_analysis_view_model/violin_analysis_chat_view_model.dart';
 import 'package:ai_muspal/models/analysis_model/violin_analysis__chat_model.dart';
 import 'package:ai_muspal/resource/asseets/image_assets.dart';
@@ -8,8 +10,7 @@ import 'package:get/get.dart';
 import '../../../bindings/chat_report_binding.dart';
 import '../../../resource/Colors/app_colors.dart';
 import '../../chatReport_view/chat_report_view.dart';
-import '../../music_chat/widget/typing_loading/tiping_loading.dart'
-    show TypingLoadingWidget;
+import '../../music_chat/widget/typing_loading/tiping_loading.dart';
 
 class ViolinAnalysisChatView extends StatefulWidget {
   @override
@@ -17,19 +18,15 @@ class ViolinAnalysisChatView extends StatefulWidget {
 }
 
 class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
-  final ViolinAnalysisChatViewModel controller = Get.put(
-    ViolinAnalysisChatViewModel(),
-  );
+  final ViolinAnalysisChatViewModel controller = Get.put(ViolinAnalysisChatViewModel());
 
   @override
   void initState() {
     super.initState();
-
     Future.delayed(Duration(milliseconds: 300), () {
       controller.messages.add(
         ViolinAnalysisChatModel(
-          content: "歡迎您，如果您準備好了，可以隨時上傳你的音頻或視頻，我會進行下一步分析。,     意音頻愈長，分析時間會愈久。",
-
+          content: "violinChat_welcome".tr,
           audio: '',
           video: '',
           isSender: false,
@@ -47,11 +44,8 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
             SvgPicture.asset(ImageAssets.analyze_profile1, height: 30),
             Column(
               children: [
-                Text(
-                  "新的對話",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                ),
-                Text("Violin bot", style: TextStyle(fontSize: 13)),
+                Text("violinChat_newConversation".tr, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                Text("violinChat_botName".tr, style: TextStyle(fontSize: 13)),
               ],
             ),
           ],
@@ -69,7 +63,6 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                   final isTyping = controller.isAnalyzing.value;
 
                   return ListView.builder(
-                   // controller: controller.scrollController, // ✅ attach controller
                     itemCount: messages.length + (isTyping ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (index == messages.length && isTyping) {
@@ -80,16 +73,11 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                             child: Row(
                               children: [
                                 CircleAvatar(
-                                  child: SvgPicture.asset(
-                                    ImageAssets.analyze_profile1,
-                                  ),
+                                  child: SvgPicture.asset(ImageAssets.analyze_profile1),
                                   radius: 16,
                                 ),
                                 const SizedBox(width: 8),
-                                SizedBox(
-                                  child:
-                                      TypingLoadingWidget(), //loading Container
-                                ),
+                                TypingLoadingWidget(),
                               ],
                             ),
                           ),
@@ -97,21 +85,13 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                       }
                       final msg = messages[index];
                       return Align(
-                        alignment:
-                            msg.isSender
-                                ? Alignment.centerRight
-                                : Alignment.centerLeft,
+                        alignment: msg.isSender ? Alignment.centerRight : Alignment.centerLeft,
                         child: Row(
-                          mainAxisAlignment:
-                              msg.isSender
-                                  ? MainAxisAlignment.end
-                                  : MainAxisAlignment.start,
+                          mainAxisAlignment: msg.isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
                           children: [
                             if (!msg.isSender)
                               CircleAvatar(
-                                child: SvgPicture.asset(
-                                  ImageAssets.analyze_profile1,
-                                ),
+                                child: SvgPicture.asset(ImageAssets.analyze_profile1),
                                 radius: 16,
                               ),
                             if (!msg.isSender) const SizedBox(width: 8),
@@ -120,19 +100,12 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                                 margin: EdgeInsets.symmetric(vertical: 4),
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color:
-                                      msg.isSender
-                                          ? AppColor.primaryButtonColor
-                                          : Colors.grey[200],
+                                  color: msg.isSender ? AppColor.primaryButtonColor : Colors.grey[200],
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12),
-                                    bottomLeft: Radius.circular(
-                                      msg.isSender ? 12 : 0,
-                                    ),
-                                    bottomRight: Radius.circular(
-                                      msg.isSender ? 0 : 12,
-                                    ),
+                                    bottomLeft: Radius.circular(msg.isSender ? 12 : 0),
+                                    bottomRight: Radius.circular(msg.isSender ? 0 : 12),
                                   ),
                                 ),
                                 child: _buildMessageContent(msg),
@@ -153,6 +126,162 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
     );
   }
 
+  Widget _buildMessageContent(ViolinAnalysisChatModel msg) {
+    if (msg.content.isNotEmpty) {
+      return Text(msg.content.tr);
+    } else if (msg.audio.isNotEmpty) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.audiotrack, color: Colors.blue),
+          SizedBox(width: 6),
+          Text("violinChat_audioFile".tr),
+        ],
+      );
+    } else if (msg.video.isNotEmpty) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.videocam, color: Colors.green),
+          SizedBox(width: 6),
+          Text("violinChat_videoFile".tr),
+        ],
+      );
+    } else {
+      return Text("violinChat_unsupported".tr);
+    }
+  }
+
+  Widget _buildInputBar() {
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Obx(() {
+          if (!controller.uploadCompleted.value) {
+            return RoundButton(
+              title: "violinChat_uploadAudioVideo".tr,
+              onPress: () => _showUploadOptions(),
+            );
+          } else if (!controller.sheetMusicHandled.value) {
+            return Row(
+              children: [
+                Expanded(
+                  child: RoundButton(
+                    title: "violinChat_uploadScore".tr,
+                    onPress: () => controller.pickSheetMusic(),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: RoundButton(
+                    buttonColor: Color(0xff000000),
+                    title: "violinChat_skip".tr,
+                    onPress: () {
+                      controller.messages.add(ViolinAnalysisChatModel(content: "User skipped sheet music upload.", audio: '', video: '', isSender: true));
+                      controller.sheetMusicHandled.value = true;
+                      controller.currentStep.value = 2;
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else if (controller.currentStep.value == 2) {
+            return Row(
+              children: [
+                Expanded(
+                  child: RoundButton(
+                    title: "violinChat_enterScoreName".tr,
+                    onPress: () => _showMusicScoreNameInput(),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: RoundButton(
+                    buttonColor: Color(0xff000000),
+                    title: "violinChat_skip".tr,
+                    onPress: () {
+                      controller.messages.add(ViolinAnalysisChatModel(content: "User skipped score name input.", audio: '', video: '', isSender: true));
+                      controller.currentStep.value = 3;
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else if (controller.currentStep.value == 3) {
+            return RoundButton(
+              title: "violinChat_resubmit".tr,
+              buttonColor: Colors.grey,
+              onPress: () {
+                controller.uploadCompleted.value = false;
+                controller.sheetMusicHandled.value = false;
+                controller.currentStep.value = 0;
+                controller.messages.clear();
+                Future.delayed(Duration(milliseconds: 300), () {
+                  controller.messages.add(ViolinAnalysisChatModel(content: "violinChat_welcome".tr, audio: '', video: '', isSender: false));
+                });
+              },
+            );
+          } else if (controller.currentStep.value == 4) {
+            return Obx(() => Column(
+              children: [
+                if (controller.isAnalyzing.value) ...[
+                  CircularProgressIndicator(),
+                  SizedBox(height: 10),
+                ],
+                RoundButton(
+                  title: "violinChat_viewReport".tr,
+                  buttonColor: AppColor.prymaryTextColor,
+                  onPress: controller.isAnalyzing.value ? null : () {
+                    Get.to(() => ChatReportView(), binding: ReportBinding());
+                  },
+                ),
+              ],
+            ));
+          } else {
+            return RoundButton(
+              title: "violinChat_viewReport".tr,
+              buttonColor: Color(0xff988a8a),
+              onPress: () {},
+            );
+          }
+        }),
+      ),
+    );
+  }
+
+  void _showUploadOptions() {
+    Get.bottomSheet(
+      Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        ),
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: Icon(Icons.audiotrack),
+              title: Text("violinChat_uploadAudio".tr),
+              onTap: () {
+                controller.pickMedia('audio');
+                Get.back();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.videocam),
+              title: Text("violinChat_uploadVideo".tr),
+              onTap: () {
+                controller.pickMedia('video');
+                Get.back();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   void _showMusicScoreNameInput() {
     final scoreController = TextEditingController();
     Get.bottomSheet(
@@ -170,7 +299,7 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                   controller.pickSheetMusic();
                   Get.back();
                 },
-                icon: Icon(Icons.add_circle_outline),
+                icon: const Icon(Icons.add_circle_outline),
               ),
 
               const SizedBox(width: 8),
@@ -188,17 +317,12 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
                   ),
                   child: TextField(
                     controller: scoreController,
-
-                    // enable and disable
-                    onChanged: (value) => controller.scoreName.value = value.trim(),
-
-
-                    decoration: const InputDecoration(
+                    onChanged: (value) =>
+                    controller.scoreName.value = value.trim(),
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Music Score Nmae ', // placeholder from image
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ), // match faded text
+                      hintText: 'violinChat_scorePlaceholder'.tr,
+                      hintStyle: const TextStyle(color: Colors.grey),
                     ),
                     maxLines: 1,
                   ),
@@ -208,160 +332,163 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
               const SizedBox(width: 8),
 
               // Send Button
-              Obx(
-               () {
-                 final isEnable = controller.scoreName.isNotEmpty;
-                 return GestureDetector(
+              Obx(() {
+                final isEnable = controller.scoreName.isNotEmpty;
+                return GestureDetector(
+                  onTap: isEnable
+                      ? () {
+                    if (scoreController.text.trim().isNotEmpty) {
+                      final name = scoreController.text.trim();
+                      Get.back();
 
-                   onTap: isEnable ?() {
-                     if (scoreController.text.trim().isNotEmpty) {
-                       final name = scoreController.text.trim();
-                       Get.back(); // Close input sheet
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Get.bottomSheet(
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20),
+                              ),
+                            ),
+                            child: SafeArea(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  // Top Title + Close Button
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'violinChat_confirmScoreTitle'.tr,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () => Get.back(),
+                                        child: const Icon(Icons.close,
+                                            size: 24),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
 
-                       // ✅ Show confirmation bottom sheet
-                       Future.delayed(Duration(milliseconds: 300), () {
-                         Get.bottomSheet(
-                           Container(
-                             padding: const EdgeInsets.all(20),
-                             decoration: const BoxDecoration(
-                               color: Colors.white,
-                               borderRadius: BorderRadius.vertical(
-                                 top: Radius.circular(20),
-                               ),
-                             ),
-                             child: SafeArea(
-                               child: Column(
-                                 mainAxisSize: MainAxisSize.min,
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   // Top Title + Close Button
-                                   Row(
-                                     mainAxisAlignment:
-                                     MainAxisAlignment.spaceBetween,
-                                     children: [
-                                       Text(
-                                         '確認樂譜名稱',
-                                         style: TextStyle(
-                                           fontSize: 18,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                       GestureDetector(
-                                         onTap: () => Get.back(),
-                                         child: Icon(Icons.close, size: 24),
-                                       ),
-                                     ],
-                                   ),
-                                   SizedBox(height: 20),
+                                  // Music name
+                                  Text(
+                                      'violinChat_scoreNameIs'
+                                          .tr, // 樂譜名稱是:
+                                      style: const TextStyle(fontSize: 16)),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    name,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'violinChat_scoreNote'.tr,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24),
 
-                                   // Music name
-                                   Text('樂譜名稱是：', style: TextStyle(fontSize: 16)),
-                                   SizedBox(height: 4),
-                                   Text(
-                                     name,
-                                     style: TextStyle(
-                                       fontSize: 16,
-                                       fontWeight: FontWeight.bold,
-                                     ),
-                                   ),
-                                   SizedBox(height: 8),
-                                   Text(
-                                     '點選返回可重新輸入樂譜名稱。',
-                                     style: TextStyle(
-                                       fontSize: 14,
-                                       color: Colors.grey,
-                                     ),
-                                   ),
-                                   SizedBox(height: 24),
+                                  // Confirm Button
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        controller.addScoreName(name);
+                                        controller.currentStep.value = 3;
+                                        Get.back();
 
-                                   // Primary Button
-                                   SizedBox(
-                                     width: double.infinity,
-                                     child: ElevatedButton(
-                                       onPressed: () {
-                                         controller.addScoreName(name);
-                                         controller.currentStep.value = 3;
-                                         Get.back(); // Close bottom sheet
+                                        controller.isAnalyzing.value = true;
 
-                                         // Show TypingLoadingWidget
-                                         controller.isAnalyzing.value = true;
+                                        Future.delayed(
+                                            const Duration(seconds: 2), () {
+                                          controller.messages.add(
+                                            ViolinAnalysisChatModel(
+                                              content:
+                                              'violinChat_analyzing'.tr,
+                                              audio: '',
+                                              video: '',
+                                              isSender: false,
+                                            ),
+                                          );
 
-                                         // Optional: Simulate delay then stop typing and add bot reply
-                                         Future.delayed(Duration(seconds: 2), () {
-                                           controller.messages.add(
-                                             ViolinAnalysisChatModel(
-                                               content: "正在分析中，請稍候…",
-                                               audio: '',
-                                               video: '',
-                                               isSender: false,
-                                             ),
-                                           );
+                                          controller.isAnalyzing.value =
+                                          false;
+                                          controller.currentStep.value = 4;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                        const Color(0xFFFF5A5F),
+                                        foregroundColor: Colors.white,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 14,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child:
+                                      Text('violinChat_confirmAnalyze'.tr),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
 
-                                           controller.isAnalyzing.value = false;
-
-                                           // Move to next step if needed
-                                           controller.currentStep.value = 4;
-                                         });
-                                       },
-
-                                       child: Text('確認並進行分析'),
-                                       style: ElevatedButton.styleFrom(
-                                         backgroundColor: Color(
-                                           0xFFFF5A5F,
-                                         ), // Red like image
-                                         foregroundColor: Colors.white,
-                                         padding: EdgeInsets.symmetric(
-                                           vertical: 14,
-                                         ),
-                                         shape: RoundedRectangleBorder(
-                                           borderRadius: BorderRadius.circular(8),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-                                   SizedBox(height: 12),
-
-                                   // Secondary Button (Outlined)
-                                   SizedBox(
-                                     width: double.infinity,
-                                     child: OutlinedButton(
-                                       onPressed: () => Get.back(),
-                                       child: Text('重新輸入'),
-                                       style: OutlinedButton.styleFrom(
-                                         foregroundColor: Color(0xFFFF5A5F),
-                                         side: BorderSide(
-                                           color: Color(0xFFFF5A5F),
-                                           width: 1.5,
-                                         ),
-                                         padding: EdgeInsets.symmetric(
-                                           vertical: 14,
-                                         ),
-                                         shape: RoundedRectangleBorder(
-                                           borderRadius: BorderRadius.circular(8),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-                                 ],
-                               ),
-                             ),
-                           ),
-                           isDismissible: false,
-                           isScrollControlled: true,
-                         );
-                       });
-                     }
-                   } : null,
-
-                   child:  CircleAvatar(
-                     radius: 22,
-                     backgroundColor:
-                     isEnable ?  Color(0xFFFF5A5F) : Colors.grey, // match icon background color from image
-                     child: Icon(Icons.arrow_forward, color: Colors.white),
-                   ),
-                 );
-               },
-              ),
+                                  // Re-enter Button
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: OutlinedButton(
+                                      onPressed: () => Get.back(),
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor:
+                                        const Color(0xFFFF5A5F),
+                                        side: const BorderSide(
+                                          color: Color(0xFFFF5A5F),
+                                          width: 1.5,
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 14,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: Text('violinChat_reenter'.tr),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          isDismissible: false,
+                          isScrollControlled: true,
+                        );
+                      });
+                    }
+                  }
+                      : null,
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundColor:
+                    isEnable ? const Color(0xFFFF5A5F) : Colors.grey,
+                    child: const Icon(Icons.arrow_forward, color: Colors.white),
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -370,212 +497,8 @@ class _ViolinAnalysisChatViewState extends State<ViolinAnalysisChatView> {
     );
   }
 
-  Widget _buildMessageContent(ViolinAnalysisChatModel msg) {
-    if (msg.content.isNotEmpty) {
-      return Text(msg.content);
-    } else if (msg.audio.isNotEmpty) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.audiotrack, color: Colors.blue),
-          SizedBox(width: 6),
-          Text("Audio File"),
-        ],
-      );
-    } else if (msg.video.isNotEmpty) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.videocam, color: Colors.green),
-          SizedBox(width: 6),
-          Text("Video File"),
-        ],
-      );
-    } else {
-      return Text("Unsupported message type");
-    }
-  }
-
-  Widget _buildInputBar() {
-    return SafeArea(
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Obx(() {
-          if (!controller.uploadCompleted.value) {
-            // Step 1: Upload audio/video
-            return RoundButton(
-              title: "上傳音頻/視頻",
-              onPress: () {
-                Get.bottomSheet(
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16),
-                      ),
-                    ),
-                    child: Wrap(
-                      children: [
-                        ListTile(
-                          leading: Icon(Icons.audiotrack),
-                          title: Text("Upload Audio"),
-                          onTap: () {
-                            controller.pickMedia('audio');
-                            Get.back();
-                          },
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.videocam),
-                          title: Text("Upload Video"),
-                          onTap: () {
-                            controller.pickMedia('video');
-                            Get.back();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          } else if (!controller.sheetMusicHandled.value) {
-            // Step 2: Upload sheet music or skip
-            return Row(
-              children: [
-                Expanded(
-                  child: RoundButton(
-                    title: "上傳樂譜",
-                    onPress: () {
-                      controller.pickSheetMusic();
-                    },
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: RoundButton(
-                    buttonColor: Color(0xff000000),
-                    title: "略過",
-                    onPress: () {
-                      controller.messages.add(
-                        ViolinAnalysisChatModel(
-                          content: "User skipped sheet music upload.",
-                          audio: '',
-                          video: '',
-                          isSender: true,
-                        ),
-                      );
-                      controller.sheetMusicHandled.value = true;
-                      controller.currentStep.value = 2; // ✅ Move to next step
-                    },
-                  ),
-                ),
-              ],
-            );
-          } else if (controller.currentStep.value == 2) {
-            return Row(
-              children: [
-                Expanded(
-                  child: RoundButton(
-                    title: "供樂譜名稱",
-                    onPress: () {
-                      _showMusicScoreNameInput();
-                    },
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: RoundButton(
-                    title: "略過",
-                    buttonColor: Color(0xff000000),
-                    onPress: () {
-                      controller.messages.add(
-                        ViolinAnalysisChatModel(
-                          content: "User skipped score name input.",
-                          audio: '',
-                          video: '',
-                          isSender: true,
-                        ),
-                      );
-                      controller.currentStep.value = 3;
-                    },
-                  ),
-                ),
-              ],
-            );
-          } else if (controller.currentStep.value == 3) {
-            return Row(
-              children: [
-                SizedBox(width: 10),
-                Expanded(
-                  child: RoundButton(
-                    title: "重新上傳",
-                    buttonColor: Colors.grey,
-                    onPress: () {
-                      // Reset states to step 0
-                      controller.uploadCompleted.value = false;
-                      controller.sheetMusicHandled.value = false;
-                      controller.currentStep.value = 0;
-                      controller.messages.clear();
-                      // Optionally reinitialize first message
-                      Future.delayed(Duration(milliseconds: 300), () {
-                        controller.messages.add(
-                          ViolinAnalysisChatModel(
-                            content:
-                                "歡迎您，如果您準備好了，可以隨時上傳你的音頻或視頻，我會進行下一步分析。,     意音頻愈長，分析時間會愈久。",
-                            audio: '',
-                            video: '',
-                            isSender: false,
-                          ),
-                        );
-                      });
-                    },
-                  ),
-                ),
-              ],
-            );
-          } else if (controller.currentStep.value == 4) {
-            return Obx(
-              () => Column(
-                children: [
-                  if (controller.isAnalyzing.value) ...[
-                    CircularProgressIndicator(), // Show typing loader
-                    SizedBox(height: 10),
-                  ],
-                  RoundButton(
-                    title: "查看報告",
-                    buttonColor: AppColor.prymaryTextColor,
-                    onPress:
-                        controller.isAnalyzing.value
-                            ? null // Disable while loading
-                            : () {
-                              // Go to report page
-                              Get.to(
-                                () => ChatReportView(),
-                                binding: ReportBinding(),
-                              );
-                            },
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return Row(
-              children: [
-                Expanded(
-                  child: RoundButton(
-                    buttonColor: Color(0xff988a8a),
-                    title: "查看報告",
-                    onPress: () {
-                      //Get.to(() => ChatReportView(), binding: ReportBinding());
-                    },
-                  ),
-                ),
-              ],
-            );
-          }
-        }),
-      ),
-    );
-  }
 }
+
+
+
+

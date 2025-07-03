@@ -17,12 +17,11 @@ class _ViolinAnalysisViewState extends State<ViolinAnalysisView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("分析對話"),
+        title: Text("violinAnalysis_title".tr),
         centerTitle: true,
         actions: [
-          SvgPicture.asset(ImageAssets.logo,height: 30,),
-          SizedBox(width: 20,)
-
+          SvgPicture.asset(ImageAssets.logo, height: 30),
+          const SizedBox(width: 20),
         ],
       ),
       body: Padding(
@@ -45,7 +44,7 @@ class _ViolinAnalysisViewState extends State<ViolinAnalysisView> {
             SizedBox(
               width: double.infinity,
               child: RoundButton(
-                title: "開啟分析",
+                title: "violinAnalysis_btn".tr,
                 onPress: () {
                   Get.toNamed(RouteName.violinAnalysisChatView);
                 },

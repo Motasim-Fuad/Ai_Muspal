@@ -12,7 +12,7 @@ class ChatReportView extends GetView<ChatReportViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('報告分析'), centerTitle: true),
+      appBar: AppBar(title: Text('chatReport_title'.tr), centerTitle: true),
       body: Obx(() {
         final report = controller.report.value;
         return SingleChildScrollView(
@@ -28,8 +28,9 @@ class ChatReportView extends GetView<ChatReportViewModel> {
                 ),
                 child: Column(
                   children: [
-                    const Text('總評分'),
-                    Text('${report.totalScore}', style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
+                    Text('chatReport_totalScore'.tr),
+                    Text('${report.totalScore}',
+                        style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -39,23 +40,22 @@ class ChatReportView extends GetView<ChatReportViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ScoreCard(title: '音準', score: report.pitchScore),
-                  ScoreCard(title: '節拍', score: report.rhythmScore),
-                  ScoreCard(title: '強弱變化', score: report.dynamicsScore),
+                  ScoreCard(title: 'chatReport_pitch'.tr, score: report.pitchScore),
+                  ScoreCard(title: 'chatReport_rhythm'.tr, score: report.rhythmScore),
+                  ScoreCard(title: 'chatReport_dynamics'.tr, score: report.dynamicsScore),
                 ],
               ),
 
               const SizedBox(height: 16),
-              SectionCard(title: '整體評語', content: report.overallComment),
+              SectionCard(title: 'chatReport_comment'.tr, content: report.overallComment),
               const SizedBox(height: 16),
 
               SectionCard(
-                title: '節拍',
+                title: 'chatReport_rhythm'.tr,
                 contentWidget: Column(
                   children: [
-                   // Image.asset('assets/sheet_music.png'),
                     const SizedBox(height: 8),
-                    const Text('學習音樂理論的基礎...（省略）'),
+                    Text('chatReport_rhythmDetails'.tr),
                     const AudioBar(duration: '0:17'),
                   ],
                 ),
@@ -63,8 +63,8 @@ class ChatReportView extends GetView<ChatReportViewModel> {
               const SizedBox(height: 16),
 
               SectionCard(
-                title: '強弱變化',
-                content: '樂句通常是音樂中的一句完整表達...',
+                title: 'chatReport_dynamics'.tr,
+                content: 'chatReport_dynamicsDetails'.tr,
               ),
               const SizedBox(height: 20),
 
@@ -72,16 +72,17 @@ class ChatReportView extends GetView<ChatReportViewModel> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => Get.snackbar('繼續對話', '功能未實作'),
+                      onPressed: () =>
+                          Get.snackbar('chatReport_continue'.tr, 'chatReport_continue_msg'.tr),
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                      child: const Text('繼續對話'),
+                      child: Text('chatReport_continue'.tr),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => Get.back(),
-                      child: const Text('返回'),
+                      child: Text('chatReport_back'.tr),
                     ),
                   ),
                 ],

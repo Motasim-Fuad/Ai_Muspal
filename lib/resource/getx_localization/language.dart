@@ -32,7 +32,7 @@ class Languages extends Translations{
       "ProfileView_3rd":"Program includes",
       "ProfileView_4th":"5 messages per day",
       "ProfileView_5th":"Maximum length of each message \n is 500 characters",
-      "ProfileView_6th":"Up to 15 minutes of AI audio rating per month",
+      "ProfileView_6th":"Up to 15 minutes of AI audio \n rating per month",
       "ProfileView_7th":"5 music analysis reports per month",
       "ProfileView_8th":"Upgrade Membership",
       "ProfileView_9th":"About Us",
@@ -180,6 +180,52 @@ class Languages extends Translations{
       "musicChat_pdfFile": "PDF File",
       "musicChat_wordFile": "Word Document",
       "musicChat_genericFile": "File" ,
+
+      "violinAnalysis_title": "Analysis Conversation",
+      "violinAnalysis_btn": "Start Analysis",
+
+      "violinChat_newConversation": "New Chat",
+      "violinChat_botName": "Violin bot",
+      "violinChat_welcome": "Welcome. Once you're ready, please upload your audio or video for analysis. Longer clips will take more time.",
+      "violinChat_uploadAudioVideo": "Upload Audio/Video",
+      "violinChat_uploadAudio": "Upload Audio",
+      "violinChat_uploadVideo": "Upload Video",
+      "violinChat_uploadScore": "Upload Sheet Music",
+      "violinChat_skip": "Skip",
+      "violinChat_enterScoreName": "Enter Score Name",
+      "violinChat_scorePlaceholder": "Music Score Name",
+      "violinChat_confirmScoreTitle": "Confirm Score Name",
+      "violinChat_scoreNameIs": "The score name is:",
+      "violinChat_scoreNote": "Click back to re-enter the score name.",
+      "violinChat_confirmAnalyze": "Confirm and Analyze",
+      "violinChat_reenter": "Re-enter",
+      "violinChat_analyzing": "Analyzing, please wait...",
+      "violinChat_resubmit": "Re-upload",
+      "violinChat_viewReport": "View Report",
+      "violinChat_audioFile": "Audio File",
+      "violinChat_videoFile": "Video File",
+      "violinChat_unsupported": "Unsupported message type",
+      "violinChat_skipUpload": "User skipped sheet music upload.",
+      "violinChat_skipScoreName": "User skipped score name input.",
+
+
+
+      "chatReport_title": "Report Analysis",
+      "chatReport_totalScore": "Total Score",
+      "chatReport_pitch": "Pitch",
+      "chatReport_rhythm": "Rhythm",
+      "chatReport_dynamics": "Dynamics",
+      "chatReport_comment": "Overall Comments",
+      "chatReport_rhythmDetails": "Basic music theory... (omitted)",
+      "chatReport_dynamicsDetails": "A phrase is typically a complete musical expression...",
+      "chatReport_continue": "Continue Chat",
+      "chatReport_back": "Back",
+      "chatReport_continue_msg": "Function not implemented",
+
+      "chatReport_overallCommentContent": "Very good! You understand the basic concept of phrases.\n\nPitch: A group of phrases forms a section. Understand the relationships and contrasts between sections.\n\nRhythm: A phrase is usually a complete musical expression, similar to a sentence in language.\n\nDynamics: A group of phrases forms a section. Understand the relationships and contrasts between sections.",
+
+      "chatReport_point": "pts",
+
 
 
 
@@ -363,6 +409,59 @@ class Languages extends Translations{
       "musicChat_pdfFile": "PDF 檔案",
       "musicChat_wordFile": "Word 文件",
       "musicChat_genericFile": "檔案",
+
+
+      "violinAnalysis_title": "分析對話",
+      "violinAnalysis_btn": "開啟分析",
+
+
+      "violinChat_newConversation": "新的对话",
+      "violinChat_botName": "小提琴机器人",
+      "violinChat_welcome": "欢迎您，如果您准备好了，可以随时上传你的音频或视频，我会进行下一步分析。音频越长，分析时间会越久。",
+      "violinChat_uploadAudioVideo": "上传音频/视频",
+      "violinChat_uploadAudio": "上传音频",
+      "violinChat_uploadVideo": "上传视频",
+      "violinChat_uploadScore": "上传乐谱",
+      "violinChat_skip": "略过",
+      "violinChat_enterScoreName": "提供乐谱名称",
+      "violinChat_scorePlaceholder": "乐谱名称",
+      "violinChat_confirmScoreTitle": "确认乐谱名称",
+      "violinChat_scoreNameIs": "乐谱名称是：",
+      "violinChat_scoreNote": "点选返回可重新输入乐谱名称。",
+      "violinChat_confirmAnalyze": "确认并进行分析",
+      "violinChat_reenter": "重新输入",
+      "violinChat_analyzing": "正在分析中，请稍候…",
+      "violinChat_resubmit": "重新上传",
+      "violinChat_viewReport": "查看报告",
+      "violinChat_audioFile": "音频文件",
+      "violinChat_videoFile": "视频文件",
+      "violinChat_unsupported": "不支持的消息类型",
+      "violinChat_skipUpload": "用户略过了乐谱上传。",
+      "violinChat_skipScoreName": "用户略过了输入乐谱名称。",
+
+
+
+      "chatReport_title": "報告分析",
+      "chatReport_totalScore": "總評分",
+      "chatReport_pitch": "音準",
+      "chatReport_rhythm": "節拍",
+      "chatReport_dynamics": "強弱變化",
+      "chatReport_comment": "整體評語",
+      "chatReport_rhythmDetails": "學習音樂理論的基礎...（省略）",
+      "chatReport_dynamicsDetails": "樂句通常是音樂中的一句完整表達...",
+      "chatReport_continue": "繼續對話",
+      "chatReport_back": "返回",
+      "chatReport_continue_msg": "功能未實作",
+
+
+      "chatReport_overallCommentContent": "非常不錯！了解基本的樂句概念。\n\n音準：一組樂句構成樂段，理解不同樂段之間的關係和對比。\n\n節拍：了解基本的樂句概念，樂句通常是音樂中的一句完整表達，類似於語言中的一句話。\n\n強弱變化：一組樂句構成樂段，理解不同樂段之間的關係和對比。",
+
+      "chatReport_point": "分",
+
+
+
+
+
 
 
 

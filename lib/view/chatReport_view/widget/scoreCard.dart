@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ScoreCard extends StatelessWidget {
-  final String title;
+  final String title; // This should be a localization key like 'chatReport_pitch'
   final int score;
 
   const ScoreCard({super.key, required this.title, required this.score});
@@ -10,8 +11,8 @@ class ScoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title),
-        Text('$score 分', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(title.tr),
+        Text('$score ${'chatReport_point'.tr}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ],
     );
   }

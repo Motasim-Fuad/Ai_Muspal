@@ -1,11 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'resource/App_routes/routes.dart' show AppRouts;
 import 'resource/getx_localization/language.dart';
-
-
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());

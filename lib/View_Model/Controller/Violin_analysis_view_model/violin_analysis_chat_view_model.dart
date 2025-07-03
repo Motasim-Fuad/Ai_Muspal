@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../models/analysis_model/violin_analysis__chat_model.dart';
 
 class ViolinAnalysisChatViewModel extends GetxController {
@@ -43,46 +42,38 @@ class ViolinAnalysisChatViewModel extends GetxController {
     }
   }
 
-  //music sheed
-
+  /// Pick sheet music and simulate analysis
   Future<void> pickSheetMusic() async {
     final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.image,
-    ); // or PDF
+    );
     if (pickedFile != null) {
       final file = File(pickedFile.files.single.path!);
       sheetMusicHandled.value = true;
 
-      // 1. Add user's upload message
       messages.add(
         ViolinAnalysisChatModel(
-          content: '使用者上傳了樂譜。',
+          content: 'violinChat_uploadScore'.tr,
           audio: '',
           video: '',
           isSender: true,
         ),
       );
 
-      // ✅ Show loading state
       isAnalyzing.value = true;
 
-      // 2. Simulate analysis delay
-      await Future.delayed(Duration(seconds: 5)); // Replace with real API call
+      await Future.delayed(Duration(seconds: 5));
 
-      // 3. Add bot response
       messages.add(
         ViolinAnalysisChatModel(
-          content: '分析完成！您可以查看分析報告。',
+          content: 'violinChat_viewReport'.tr,
           audio: '',
           video: '',
           isSender: false,
         ),
       );
 
-      // ✅ Hide loading state
       isAnalyzing.value = false;
-
-      // ✅ Move to report view step
       currentStep.value = 4;
     }
   }
@@ -92,28 +83,28 @@ class ViolinAnalysisChatViewModel extends GetxController {
     scoreName.value = name;
     messages.add(
       ViolinAnalysisChatModel(
-        content: "Score Name: $name",
+        content: "${'violinChat_scoreNameIs'.tr} $name",
         audio: '',
         video: '',
         isSender: true,
       ),
     );
 
-    // ✅ Show loading state
     isAnalyzing.value = true;
 
     Future.delayed(Duration(seconds: 5), () {
       messages.add(
         ViolinAnalysisChatModel(
-          content: "Bot received the score name.$name",
+          content: "violinChat_analyzing".tr,
           audio: '',
           video: '',
           isSender: false,
         ),
       );
-    });
 
-    isAnalyzing.value = false;
+      isAnalyzing.value = false;
+      currentStep.value = 4;
+    });
   }
 
   /// Upload and send audio or video file
@@ -134,13 +125,12 @@ class ViolinAnalysisChatViewModel extends GetxController {
         ),
       );
 
-      // Mark upload as completed
       uploadCompleted.value = true;
 
       Future.delayed(Duration(seconds: 5), () {
         messages.add(
           ViolinAnalysisChatModel(
-            content: "Bot received your $type file.",
+            content: "violinChat_${type}File".tr,
             audio: '',
             video: '',
             isSender: false,
